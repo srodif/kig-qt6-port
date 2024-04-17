@@ -21,7 +21,7 @@
 #include <KIconEngine>
 
 #include <QIcon>
-#include <QRegExp>
+#include <QRegularExpression>
 
 int GUIAction::shortcut() const
 {
@@ -77,7 +77,7 @@ KigGUIAction::KigGUIAction(GUIAction *act, KigPart &doc)
         setIcon(QIcon(new KIconEngine(icon, doc.iconLoader())));
     setWhatsThis(act->description());
     QString tooltip = act->descriptiveName();
-    tooltip.replace(QRegExp("&&"), QStringLiteral("&"));
+    tooltip.replace(QRegularExpression("&&"), QStringLiteral("&"));
     setToolTip(tooltip);
     connect(this, &QAction::triggered, this, &KigGUIAction::slotActivated);
 
