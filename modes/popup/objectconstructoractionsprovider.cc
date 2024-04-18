@@ -47,7 +47,7 @@ void ObjectConstructorActionsProvider::fillUpMenu(NormalModePopupObjects &popup,
         if (add) {
             QString iconfile = (*i)->iconFileName();
             if (!iconfile.isEmpty() && !iconfile.isNull()) {
-                popup.addInternalAction(menu, QIcon(new KIconEngine(iconfile, popup.part().iconLoader())), (*i)->descriptiveName(), nextfree++);
+                popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String(iconfile), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), (*i)->descriptiveName(), nextfree++);
             } else
                 popup.addInternalAction(menu, (*i)->descriptiveName(), nextfree++);
             mctors[menu].push_back(*i);
