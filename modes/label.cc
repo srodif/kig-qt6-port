@@ -159,7 +159,7 @@ void TextLabelModeBase::leftReleased(QMouseEvent *e, KigWidget *v, ObjectTypeCal
             QString s = l[i].toString();
             const char *iconfile = o->imp()->iconForProperty(i);
             if (iconfile && *iconfile) {
-                act = p.addAction(QIcon(new KIconEngine(QLatin1String(iconfile), mdoc.iconLoader())), s);
+                act = p.addAction(QIcon(KIconLoader::global()->loadIcon(QLatin1String(iconfile), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), s);
             } else {
                 act = p.addAction(s);
             };
