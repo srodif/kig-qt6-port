@@ -38,7 +38,7 @@
 #include "../objects/vector_type.h"
 
 #include <QFile>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include <QDebug>
 
@@ -134,7 +134,7 @@ KigDocument *KigFilterCabri::load(const QString &file)
     }
 
     QString s = CabriNS::readLine(f);
-    QRegExp header(
+    QRegularExpression header(
         "Figure Cabri\\s?II (Plus )?vers\\. (MS-Windows|DOS) ((\\d+)\\.(\\d+)(\\.(\\d+))?(\\.(\\d+))?|(\\d+)\\.x \\((\\d+)\\.(\\d+)\\))(, ([^,]+), "
         "t=(\\d+)s)?");
     header.setCaseSensitivity(Qt::CaseInsensitive);
