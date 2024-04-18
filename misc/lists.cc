@@ -12,7 +12,7 @@
 
 #include <KMessageBox>
 #include <QFile>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QTextStream>
 #include <algorithm>
 #include <iterator>
@@ -308,7 +308,7 @@ bool MacroList::loadNew(const QDomElement &docelem, std::vector<Macro *> &ret, c
         return false;
 
     QString version = docelem.attribute(QStringLiteral("Version"));
-    //  QRegExp re( "(\\d+)\\.(\\d+)\\.(\\d+)" );
+    //  QRegularExpression re( "(\\d+)\\.(\\d+)\\.(\\d+)" );
     //  re.match( version );
     // unused..
     //  int major = re.cap( 1 ).toInt( &sok );
