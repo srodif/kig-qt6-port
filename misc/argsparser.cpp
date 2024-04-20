@@ -161,7 +161,7 @@ const ObjectImpType *ArgsParser::impRequirement(const ObjectImp *o, const Args &
     return s.type;
 }
 
-std::string ArgsParser::usetext(const ObjectImp *obj, const Args &sel) const
+KLazyLocalizedString ArgsParser::usetext(const ObjectImp *obj, const Args &sel) const
 {
     spec s = findSpec(obj, sel);
     return s.usetext;
@@ -213,7 +213,7 @@ bool ArgsParser::isDefinedOnOrThrough(const ObjectImp *o, const Args &parents) c
     return s.onOrThrough;
 }
 
-std::string ArgsParser::selectStatement(const Args &selection) const
+KLazyLocalizedString ArgsParser::selectStatement(const Args &selection) const
 {
     std::vector<bool> found(margs.size(), false);
 
@@ -231,5 +231,5 @@ std::string ArgsParser::selectStatement(const Args &selection) const
             return margs[i].selectstat;
     }
     qDebug() << "no proper select statement found :(";
-    return "";
+    return kli18n("");
 }
