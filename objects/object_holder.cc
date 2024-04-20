@@ -150,5 +150,5 @@ QString ObjectHolder::selectStatement() const
     if (n.isEmpty())
         return kli18n(imp()->type()->selectStatement()).toString();
     else
-        return kli18n(imp()->type()->selectNameStatement(), n).toString();
+        return kli18n("Unnamed").toString();
 }
