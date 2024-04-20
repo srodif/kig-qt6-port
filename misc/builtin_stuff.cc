@@ -119,8 +119,8 @@ void setupBuiltinStuff()
         // we only register the guiaction, cause it makes sense to have a
         // toolbar icon for this.
         static PropertyObjectConstructor anglebisectionctor(AngleImp::stype(),
-                                                            I18N_NOOP("Construct Bisector of This Angle"),
-                                                            I18N_NOOP("Select the angle you want to construct the bisector of..."),
+                                                            kli18n("Construct Bisector of This Angle"),
+                                                            kli18n("Select the angle you want to construct the bisector of..."),
                                                             i18n("Angle Bisector"),
                                                             i18n("The bisector of an angle"),
                                                             "angle_bisector",
@@ -239,7 +239,7 @@ void setupBuiltinStuff()
 
             ObjectConstructor *mpotp = new MidPointOfTwoPointsConstructor();
             ObjectConstructor *mpos =
-                new PropertyObjectConstructor(SegmentImp::stype(), I18N_NOOP("Construct the midpoint of this segment"), "", "", "", "", "mid-point");
+                new PropertyObjectConstructor(SegmentImp::stype(), kli18n("Construct the midpoint of this segment"), "", "", "", "", "mid-point");
 
             // make this a static object, so it gets deleted at the end of
             // the program.
@@ -261,7 +261,7 @@ void setupBuiltinStuff()
 
             ObjectConstructor *mpotp = new GoldenPointOfTwoPointsConstructor();
             ObjectConstructor *mpos = new PropertyObjectConstructor(SegmentImp::stype(),
-                                                                    I18N_NOOP("Construct the golden ratio point of this segment"),
+                                                                    kli18n("Construct the golden ratio point of this segment"),
                                                                     "",
                                                                     "",
                                                                     "",
@@ -336,8 +336,8 @@ void setupBuiltinStuff()
         // Transformation stuff..
         //    c = new SimpleObjectTypeConstructor(
         //      CircularInversionType::instance(),
-        //      I18N_NOOP( "Invert" ),
-        //      I18N_NOOP( "The inversion of an object with respect to a circle" ),
+        //      kli18n( "Invert" ),
+        //      kli18n( "The inversion of an object with respect to a circle" ),
         //      "inversion" );
         //    ctors->add( c );
         //    actions->add( new ConstructibleAction( c, "objects_new_inversion" ) );
@@ -424,8 +424,8 @@ void setupBuiltinStuff()
 
         //     c = new SimpleObjectTypeConstructor(
         //       ProjectiveRotationType::instance(),
-        //       I18N_NOOP( "Rotate Projectively" ),
-        //       I18N_NOOP( "An object projectively rotated by an angle and a half-line" ),
+        //       kli18n( "Rotate Projectively" ),
+        //       kli18n( "An object projectively rotated by an angle and a half-line" ),
         //       "projectiverotation" );
         //     ctors->add( c );
         //     actions->add( new ConstructibleAction( c, "objects_new_projectiverotation" ) );
@@ -573,8 +573,8 @@ void setupBuiltinStuff()
 
         //    c = new SimpleObjectTypeConstructor(
         //      MeasureTransportType::instance(),
-        //      I18N_NOOP( "Measure Transport" ),
-        //      I18N_NOOP( "Transport the measure of a segment or arc over a line or circle." ),
+        //      kli18n( "Measure Transport" ),
+        //      kli18n( "Transport the measure of a segment or arc over a line or circle." ),
         //      "measuretransport" );
         //    ctors->add( c );
         //    actions->add( new ConstructibleAction( c, "objects_new_measuretransport" ) );
@@ -609,7 +609,7 @@ void setupBuiltinStuff()
 #ifdef KIG_ENABLE_PYTHON_SCRIPTING
 #include "../scripting/script-common.h"
         actions->add(
-            new NewScriptAction(I18N_NOOP("Python Script"), I18N_NOOP("Construct a new Python script."), "objects_new_script_python", ScriptType::Python));
+            new NewScriptAction(kli18n("Python Script"), kli18n("Construct a new Python script."), "objects_new_script_python", ScriptType::Python));
 #endif
 
 #if 0
