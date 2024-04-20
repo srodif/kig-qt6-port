@@ -121,10 +121,10 @@ void setupBuiltinStuff()
         static PropertyObjectConstructor anglebisectionctor(AngleImp::stype(),
                                                             kli18n("Construct Bisector of This Angle"),
                                                             kli18n("Select the angle you want to construct the bisector of..."),
-                                                            i18n("Angle Bisector"),
-                                                            i18n("The bisector of an angle"),
-                                                            "angle_bisector",
-                                                            "angle-bisector");
+                                                            kli18n("Angle Bisector"),
+                                                            kli18n("The bisector of an angle"),
+                                                            kli18n("angle_bisector"),
+                                                            kli18n("angle-bisector"));
         actions->add(new ConstructibleAction(&anglebisectionctor, "objects_new_angle_bisector"));
 
         // conic stuff
@@ -239,7 +239,7 @@ void setupBuiltinStuff()
 
             ObjectConstructor *mpotp = new MidPointOfTwoPointsConstructor();
             ObjectConstructor *mpos =
-                new PropertyObjectConstructor(SegmentImp::stype(), kli18n("Construct the midpoint of this segment"), "", "", "", "", "mid-point");
+                new PropertyObjectConstructor(SegmentImp::stype(), kli18n("Construct the midpoint of this segment"), kli18n(""), kli18n(""), kli18n(""), kli18n(""), kli18n("mid-point"));
 
             // make this a static object, so it gets deleted at the end of
             // the program.
@@ -262,11 +262,11 @@ void setupBuiltinStuff()
             ObjectConstructor *mpotp = new GoldenPointOfTwoPointsConstructor();
             ObjectConstructor *mpos = new PropertyObjectConstructor(SegmentImp::stype(),
                                                                     kli18n("Construct the golden ratio point of this segment"),
-                                                                    "",
-                                                                    "",
-                                                                    "",
-                                                                    "",
-                                                                    "golden-point");
+                                                                    kli18n(""),
+                                                                    kli18n(""),
+                                                                    kli18n(""),
+                                                                    kli18n(""),
+                                                                    kli18n("golden-point"));
 
             // make this a static object, so it gets deleted at the end of
             // the program.
