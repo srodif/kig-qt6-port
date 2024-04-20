@@ -14,13 +14,15 @@
 
 #include "../misc/common.h"
 
-static const char constructcirclethroughpointstat[] = I18N_NOOP("Construct a circle through this point");
+#include <KLazyLocalizedString>
 
-static const char constructcirclewithcenterstat[] = I18N_NOOP("Construct a circle with this center");
+static const KLazyLocalizedString constructcirclethroughpointstat = kli18n("Construct a circle through this point");
+
+static const KLazyLocalizedString constructcirclewithcenterstat = kli18n("Construct a circle with this center");
 
 static const ArgsParser::spec argsspecCircleBCP[] = {
-    {PointImp::stype(), constructcirclewithcenterstat, I18N_NOOP("Select the center of the new circle..."), false},
-    {PointImp::stype(), constructcirclethroughpointstat, I18N_NOOP("Select a point for the new circle to go through..."), true}};
+    {PointImp::stype(), constructcirclewithcenterstat, kli18n("Select the center of the new circle..."), false},
+    {PointImp::stype(), constructcirclethroughpointstat, kli18n("Select a point for the new circle to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(CircleBCPType)
 
@@ -45,9 +47,9 @@ ObjectImp *CircleBCPType::calcx(const Coordinate &a, const Coordinate &b) const
 }
 
 static const ArgsParser::spec argsspecCircleBTP[] = {
-    {PointImp::stype(), constructcirclethroughpointstat, I18N_NOOP("Select a point for the new circle to go through..."), true},
-    {PointImp::stype(), constructcirclethroughpointstat, I18N_NOOP("Select a point for the new circle to go through..."), true},
-    {PointImp::stype(), constructcirclethroughpointstat, I18N_NOOP("Select a point for the new circle to go through..."), true}};
+    {PointImp::stype(), constructcirclethroughpointstat, kli18n("Select a point for the new circle to go through..."), true},
+    {PointImp::stype(), constructcirclethroughpointstat, kli18n("Select a point for the new circle to go through..."), true},
+    {PointImp::stype(), constructcirclethroughpointstat, kli18n("Select a point for the new circle to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(CircleBTPType)
 
@@ -173,8 +175,8 @@ const ObjectImpType *CircleBTPType::resultId() const
 }
 
 static const ArgsParser::spec argsspecCircleBPR[] = {
-    {PointImp::stype(), constructcirclewithcenterstat, I18N_NOOP("Select the center of the new circle..."), false},
-    {&lengthimptypeinstance, I18N_NOOP("With this radius"), I18N_NOOP("Select the length of the radius..."), false}};
+    {PointImp::stype(), constructcirclewithcenterstat, kli18n("Select the center of the new circle..."), false},
+    {&lengthimptypeinstance, kli18n("With this radius"), kli18n("Select the length of the radius..."), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(CircleBPRType)
 
