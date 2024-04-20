@@ -166,12 +166,12 @@ class PropertyObjectConstructor : public StandardConstructorBase
 
 public:
     explicit PropertyObjectConstructor(const ObjectImpType *imprequirement,
-                                       const char *usetext,
-                                       const char *selectstat,
-                                       const QString &descname,
-                                       const QString &desc,
-                                       const QString &iconfile,
-                                       const char *propertyinternalname);
+                                        KLazyLocalizedString &usetext,
+                                        KLazyLocalizedString &selectstat,
+                                        KLazyLocalizedString &descname,
+                                        KLazyLocalizedString &desc,
+                                        KLazyLocalizedString &iconfile,
+                                        KLazyLocalizedString &propertyinternalname);
 
     ~PropertyObjectConstructor();
 
