@@ -273,12 +273,12 @@ ObjectImp *MidPointType::calcx(const Coordinate &a, const Coordinate &b) const
 
 static const ArgsParser::spec argsspecGoldenPoint[] = {
     {PointImp::stype(),
-     I18N_NOOP("Construct the golden ratio point of this point and another point"),
-     I18N_NOOP("Select the first of the two points of which you want to construct the golden ratio point..."),
+     kli18n("Construct the golden ratio point of this point and another point"),
+     kli18n("Select the first of the two points of which you want to construct the golden ratio point..."),
      false},
     {PointImp::stype(),
-     I18N_NOOP("Construct the golden ratio point of this point and another point"),
-     I18N_NOOP("Select the other of the two points of which you want to construct the golden ratio point..."),
+     kli18n("Construct the golden ratio point of this point and another point"),
+     kli18n("Select the other of the two points of which you want to construct the golden ratio point..."),
      false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(GoldenPointType)
@@ -645,9 +645,9 @@ ObjectImp *MeasureTransportType::calc(const Args &parents, const KigDocument &do
     return new InvalidImp;
 }
 
-//    I18N_NOOP( "Select the segment/arc to transport on the circle/line..." ), false },
-//    I18N_NOOP( "Select the circle/line on which to transport a measure..." ), true },
-//    I18N_NOOP( "Select a point on the circle/line..." ), false }
+//    kli18n( "Select the segment/arc to transport on the circle/line..." ), false },
+//    kli18n( "Select the circle/line on which to transport a measure..." ), true },
+//    kli18n( "Select a point on the circle/line..." ), false }
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(MeasureTransportType)
 
