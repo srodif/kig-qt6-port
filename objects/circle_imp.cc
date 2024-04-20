@@ -264,7 +264,7 @@ QString CircleImp::simplyCartesianEquationString(const KigDocument &) const
     ret.addTerm(mradius * mradius, QLatin1String(""), needsign);
     ret.prettify();
 
-    //  QString ret = i18n( "( x - %1 )² + ( y - %2 )² = %3" );
+    //  QString ret = kli18n( "( x - %1 )² + ( y - %2 )² = %3" );
     //  ret = ret.arg( mcenter.x, 0, 'g', 3 );
     //  ret = ret.arg( mcenter.y, 0, 'g', 3 );
     //  ret = ret.arg( mradius * mradius, 0, 'g', 3 );
@@ -335,8 +335,8 @@ const ObjectImpType *CircleImp::stype()
     static const ObjectImpType t(Parent::stype(),
                                  "circle",
                                  kli18n("circle"),
-                                 I18N_NOOP("Select this circle"),
-                                 I18N_NOOP("Select circle %1"),
+                                 kli18n("Select this circle"),
+                                 kli18n("Select circle %1"),
                                  kli18n("Remove a Circle"),
                                  kli18n("Add a Circle"),
                                  kli18n("Move a Circle"),
