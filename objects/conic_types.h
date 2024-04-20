@@ -162,6 +162,6 @@ public:
     static const ConicRadicalType *instance();
     ObjectImp *calc(const Args &parents, const KigDocument &) const override;
     const ObjectImpType *resultId() const override;
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &o, ObjectTypeCalcer &t, KigPart &d, KigWidget &w, NormalMode &m) const override;
 };
