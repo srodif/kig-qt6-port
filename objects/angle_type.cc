@@ -22,13 +22,14 @@
 #include <math.h>
 
 #include <QStringList>
+#include <KLazyLocalizedString>
 
-static const char *constructanglethroughpoint = I18N_NOOP("Construct an angle through this point");
+static const KLazyLocalizedString constructanglethroughpoint = kli18n("Construct an angle through this point");
 
 static const ArgsParser::spec argsspecAngle[] = {
-    {PointImp::stype(), constructanglethroughpoint, I18N_NOOP("Select a point that the first half-line of the angle should go through..."), true},
-    {PointImp::stype(), I18N_NOOP("Construct an angle at this point"), I18N_NOOP("Select the point to construct the angle in..."), true},
-    {PointImp::stype(), constructanglethroughpoint, I18N_NOOP("Select a point that the second half-line of the angle should go through..."), true}};
+    {PointImp::stype(), constructanglethroughpoint, kli18n("Select a point that the first half-line of the angle should go through..."), true},
+    {PointImp::stype(), kli18n("Construct an angle at this point"), kli18n("Select the point to construct the angle in..."), true},
+    {PointImp::stype(), constructanglethroughpoint, kli18n("Select a point that the second half-line of the angle should go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(AngleType)
 
@@ -83,12 +84,12 @@ const ObjectImpType *AngleType::resultId() const
     return AngleImp::stype();
 }
 
-QStringList AngleType::specialActions() const
+QList<KLazyLocalizedString>/*QStringList*/ AngleType::specialActions() const
 {
-    QStringList ret;
+    QList<KLazyLocalizedString> ret;
 
-    ret << i18n("Set Si&ze");
-    ret << i18n("Toggle &Right Angle Mark");
+    ret << kli18n("Set Si&ze");
+    ret << kli18n("Toggle &Right Angle Mark");
 
     return ret;
 }
@@ -130,7 +131,7 @@ void AngleType::executeAction(int i, ObjectHolder &, ObjectTypeCalcer &t, KigPar
 
         MonitorDataObjects mon(getAllParents(parents));
         parents[2]->move(nc, d.document());
-        KigCommand *kc = new KigCommand(d, i18n("Resize Angle"));
+        KigCommand *kc = new KigCommand(d, kli18n("Resize Angle").toString());
         mon.finish(kc);
         d.history()->push(kc);
     } else if (i == 1) {
