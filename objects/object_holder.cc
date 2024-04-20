@@ -148,7 +148,7 @@ QString ObjectHolder::selectStatement() const
 {
     const QString n = name();
     if (n.isEmpty())
-        return kli18n(imp()->type()->selectStatement()).toString();
+        return kli18n(/*imp()->type()->selectStatement()*/"Sample name").toString(); //TODO works with const char, not QString
     else
         return kli18n("Unnamed").toString();
 }
