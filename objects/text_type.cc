@@ -25,9 +25,9 @@
 #include <QFontDialog>
 #include <QStringList>
 
-static const ArgsParser::spec arggspeccs[] = {{IntImp::stype(), "UNUSED", "SHOULD NOT BE SEEN", false},
-                                              {PointImp::stype(), "UNUSED", "SHOULD NOT BE SEEN", false},
-                                              {StringImp::stype(), "UNUSED", "SHOULD NOT BE SEEN", false}};
+static const ArgsParser::spec arggspeccs[] = {{IntImp::stype(), kli18n("UNUSED"), kli18n("SHOULD NOT BE SEEN"), false},
+                                              {PointImp::stype(), kli18n("UNUSED"), kli18n("SHOULD NOT BE SEEN"), false},
+                                              {StringImp::stype(), kli18n("UNUSED"), kli18n("SHOULD NOT BE SEEN"), false}};
 
 // KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE( GenericTextType )
 
