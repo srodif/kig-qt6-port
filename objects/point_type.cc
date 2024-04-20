@@ -23,8 +23,10 @@
 #include "../misc/kiginputdialog.h"
 #include "../modes/moving.h"
 
-static const ArgsParser::spec argsspecFixedPoint[] = {{DoubleImp::stype(), "x", "SHOULD NOT BE SEEN", false},
-                                                      {DoubleImp::stype(), "y", "SHOULD NOT BE SEEN", false}};
+#include <KLocalizedString>
+
+static const ArgsParser::spec argsspecFixedPoint[] = {{DoubleImp::stype(), kli18n("x"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                      {DoubleImp::stype(), kli18n("y"), kli18n("SHOULD NOT BE SEEN"), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(FixedPointType)
 
@@ -48,9 +50,9 @@ ObjectImp *FixedPointType::calc(const Args &parents, const KigDocument &) const
     return new PointImp(Coordinate(a, b));
 }
 
-static const ArgsParser::spec argsspecRelativePoint[] = {{DoubleImp::stype(), "relative-x", "SHOULD NOT BE SEEN", false},
-                                                         {DoubleImp::stype(), "relative-y", "SHOULD NOT BE SEEN", false},
-                                                         {ObjectImp::stype(), "object", "SHOULD NOT BE SEEN", false}};
+static const ArgsParser::spec argsspecRelativePoint[] = {{DoubleImp::stype(), kli18n("relative-x"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                         {DoubleImp::stype(), kli18n("relative-y"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                         {ObjectImp::stype(), kli18n("object"), kli18n("SHOULD NOT BE SEEN"), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(RelativePointType)
 
@@ -123,8 +125,8 @@ ObjectImp *ConstrainedPointType::calc(const Args &parents, const KigDocument &do
         return new InvalidImp;
 }
 
-const ArgsParser::spec argsspecConstrainedPoint[] = {{DoubleImp::stype(), "parameter", "SHOULD NOT BE SEEN", false},
-                                                     {CurveImp::stype(), "Constrain the point to this curve", "SHOULD NOT BE SEEN", true}};
+const ArgsParser::spec argsspecConstrainedPoint[] = {{DoubleImp::stype(), kli18n("parameter"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                     {CurveImp::stype(), kli18n("Constrain the point to this curve"), kli18n("SHOULD NOT BE SEEN"), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(ConstrainedPointType)
 
@@ -239,12 +241,12 @@ bool CursorPointType::canMove(const ObjectTypeCalcer &) const
 }
 
 static const ArgsParser::spec argsspecMidPoint[] = {{PointImp::stype(),
-                                                     I18N_NOOP("Construct the midpoint of this point and another point"),
-                                                     I18N_NOOP("Select the first of the two points of which you want to construct the midpoint..."),
+                                                     kli18n("Construct the midpoint of this point and another point"),
+                                                     kli18n("Select the first of the two points of which you want to construct the midpoint..."),
                                                      false},
                                                     {PointImp::stype(),
-                                                     I18N_NOOP("Construct the midpoint of this point and another point"),
-                                                     I18N_NOOP("Select the other of the two points of which you want to construct the midpoint..."),
+                                                     kli18n("Construct the midpoint of this point and another point"),
+                                                     kli18n("Select the other of the two points of which you want to construct the midpoint..."),
                                                      false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(MidPointType)
@@ -380,19 +382,19 @@ const ObjectImpType *GoldenPointType::resultId() const
     return PointImp::stype();
 }
 
-QStringList FixedPointType::specialActions() const
+QList<KLazyLocalizedString> FixedPointType::specialActions() const
 {
-    QStringList ret;
-    ret << i18n("Set &Coordinate...");
-    ret << i18n("Redefine");
+    QList<KLazyLocalizedString> ret;
+    ret << kli18n("Set &Coordinate...");
+    ret << kli18n("Redefine");
     return ret;
 }
 
-QStringList ConstrainedPointType::specialActions() const
+QList<KLazyLocalizedString> ConstrainedPointType::specialActions() const
 {
-    QStringList ret;
-    ret << i18n("Set &Parameter...");
-    ret << i18n("Redefine");
+    QList<KLazyLocalizedString> ret;
+    ret << kli18n("Set &Parameter...");
+    ret << kli18n("Redefine");
     return ret;
 }
 
@@ -504,10 +506,10 @@ std::vector<ObjectCalcer *> ConstrainedPointType::movableParents(const ObjectTyp
     return ret;
 }
 
-static const ArgsParser::spec argsspecConstrainedRelativePoint[] = {{DoubleImp::stype(), "relative-x", "SHOULD NOT BE SEEN", false},
-                                                                    {DoubleImp::stype(), "relative-y", "SHOULD NOT BE SEEN", false},
-                                                                    {DoubleImp::stype(), "parameter", "SHOULD NOT BE SEEN", false},
-                                                                    {CurveImp::stype(), "curve", "SHOULD NOT BE SEEN", false}};
+static const ArgsParser::spec argsspecConstrainedRelativePoint[] = {{DoubleImp::stype(), kli18n("relative-x"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                                    {DoubleImp::stype(), kli18n("relative-y"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                                    {DoubleImp::stype(), kli18n("parameter"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                                    {CurveImp::stype(), kli18n("curve"), kli18n("SHOULD NOT BE SEEN"), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(ConstrainedRelativePointType)
 
@@ -740,9 +742,9 @@ ObjectImp *MeasureTransportTypeOld::calc(const Args &parents, const KigDocument 
 }
 
 static const ArgsParser::spec argsspecMeasureTransportOld[] = {
-    {CircleImp::stype(), "Transport a measure on this circle", I18N_NOOP("Select the circle on which to transport a measure..."), true},
-    {PointImp::stype(), "Start transport from this point of the circle", I18N_NOOP("Select a point on the circle..."), false},
-    {SegmentImp::stype(), "Segment to transport", I18N_NOOP("Select the segment to transport on the circle..."), false}};
+    {CircleImp::stype(), kli18n("Transport a measure on this circle"), kli18n("Select the circle on which to transport a measure..."), true},
+    {PointImp::stype(), kli18n("Start transport from this point of the circle"), kli18n("Select a point on the circle..."), false},
+    {SegmentImp::stype(), kli18n("Segment to transport"), kli18n("Select the segment to transport on the circle..."), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(MeasureTransportTypeOld)
 
@@ -791,8 +793,8 @@ ObjectImp *PointByCoordsType::calc(const Args &parents, const KigDocument &) con
 }
 
 static const ArgsParser::spec argsspecPointByCoords[] = {
-    {&lengthimptypeinstance, "X coordinate given by this number/length", I18N_NOOP("Select a number/length as x coordinate of the point..."), false},
-    {&lengthimptypeinstance, "Y coordinate given by this number/length", I18N_NOOP("Select a number/length as y coordinate of the point..."), false}};
+    {&lengthimptypeinstance, kli18n("X coordinate given by this number/length"), kli18n("Select a number/length as x coordinate of the point..."), false},
+    {&lengthimptypeinstance, kli18n("Y coordinate given by this number/length"), kli18n("Select a number/length as y coordinate of the point..."), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(PointByCoordsType)
 
@@ -817,8 +819,8 @@ const ObjectImpType *PointByCoordsType::resultId() const
 }
 
 static const ArgsParser::spec argsspecProjectedPoint[] = {
-    {PointImp::stype(), "Point to project", I18N_NOOP("Select a point to project onto a line..."), false},
-    {AbstractLineImp::stype(), "Line where to project", I18N_NOOP("Line where the projected point will lie..."), true}};
+    {PointImp::stype(), kli18n("Point to project"), kli18n("Select a point to project onto a line..."), false},
+    {AbstractLineImp::stype(), kli18n("Line where to project"), kli18n("Line where the projected point will lie..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(ProjectedPointType)
 
