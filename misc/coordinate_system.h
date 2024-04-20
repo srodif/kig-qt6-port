@@ -16,7 +16,7 @@ class CoordinateSystem;
 class QValidator;
 class Coordinate;
 class QString;
-class QStringList;
+//class QStringList; //redefinition
 
 /**
  * a factory to build a CoordinateSystem and a small handle to the
