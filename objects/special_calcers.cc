@@ -4,9 +4,9 @@
 
 #include "special_calcers.h"
 
-static const ArgsParser::spec argsspecMeasureTransport[] = {{CircleImp::stype(), I18N_NOOP("Transport a measure on this circle")},
-                                                            {PointImp::stype(), I18N_NOOP("Project this point onto the circle")},
-                                                            {SegmentImp::stype(), I18N_NOOP("Segment to transport")}};
+static const ArgsParser::spec argsspecMeasureTransport[] = {{CircleImp::stype(), kli18n("Transport a measure on this circle")},
+                                                            {PointImp::stype(), kli18n("Project this point onto the circle")},
+                                                            {SegmentImp::stype(), kli18n("Segment to transport")}};
 
 static ArgsParser measuretransportargsparser(argsspecMeasureTransport, 3);
 
