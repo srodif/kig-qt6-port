@@ -72,9 +72,9 @@ bool ObjectType::isTransform() const
     return false;
 }
 
-QStringList ObjectType::specialActions() const
+QList<KLazyLocalizedString> ObjectType::specialActions() const
 {
-    return QStringList();
+    return QList<KLazyLocalizedString>();
 }
 
 void ObjectType::executeAction(int, ObjectHolder &, ObjectTypeCalcer &, KigPart &, KigWidget &, NormalMode &) const
