@@ -28,7 +28,7 @@ public:
     void move(ObjectTypeCalcer &ourobj, const Coordinate &to, const KigDocument &) const override;
     const ObjectImpType *resultId() const override;
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &o, ObjectTypeCalcer &t, KigPart &d, KigWidget &w, NormalMode &m) const override;
 };
 
@@ -50,7 +50,7 @@ public:
     void move(ObjectTypeCalcer &ourobj, const Coordinate &to, const KigDocument &) const override;
     const ObjectImpType *resultId() const override;
 
-    //  QStringList specialActions() const;
+    //  QList<KLazyLocalizedString> specialActions() const;
     //  void executeAction( int i, ObjectHolder& o, ObjectTypeCalcer& t,
     //                      KigPart& d, KigWidget& w, NormalMode& m ) const;
 };
@@ -111,7 +111,7 @@ public:
     void move(ObjectTypeCalcer &ourobj, const Coordinate &to, const KigDocument &) const override;
     const ObjectImpType *resultId() const override;
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &, ObjectTypeCalcer &o, KigPart &d, KigWidget &w, NormalMode &m) const override;
 };
 
