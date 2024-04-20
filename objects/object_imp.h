@@ -85,8 +85,8 @@ class ObjectImpType
     const ObjectImpType *mparent;
     const char *minternalname;
     KLazyLocalizedString mtranslatedname;
-    const char *mselectstatement;
-    const char *mselectnamestatement;
+    KLazyLocalizedString mselectstatement;
+    KLazyLocalizedString mselectnamestatement;
     KLazyLocalizedString mremoveastatement;
     KLazyLocalizedString maddastatement;
     KLazyLocalizedString mmoveastatement;
