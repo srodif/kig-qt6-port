@@ -806,8 +806,8 @@ bool CastShadowType::isTransform() const
 }
 
 static const ArgsParser::spec argsspecApplyTransformation[] = {
-    {ObjectImp::stype(), kli18n("Transform this object"), "SHOULD NOT BE SEEN", false},
-    {TransformationImp::stype(), kli18n("Transform using this transformation"), "SHOULD NOT BE SEEN", false}};
+    {ObjectImp::stype(), kli18n("Transform this object"), kli18n("SHOULD NOT BE SEEN"), false},
+    {TransformationImp::stype(), kli18n("Transform using this transformation"), kli18n("SHOULD NOT BE SEEN"), false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(ApplyTransformationObjectType)
 
