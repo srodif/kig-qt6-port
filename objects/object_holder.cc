@@ -148,7 +148,7 @@ QString ObjectHolder::selectStatement() const
 {
     const QString n = name();
     if (n.isEmpty())
-        return i18n(imp()->type()->selectStatement());
+        return kli18n(imp()->type()->selectStatement()).toString();
     else
-        return i18n(imp()->type()->selectNameStatement(), n);
+        return kli18n(imp()->type()->selectNameStatement(), n).toString();
 }
