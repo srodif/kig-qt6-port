@@ -232,12 +232,12 @@ QString ObjectImpType::translatedName() const
     return mtranslatedname.toString();
 }
 
-const QString ObjectImpType::selectStatement() const
+QString ObjectImpType::selectStatement() const
 {
     return mselectstatement.toString();
 }
 
-const QString ObjectImpType::selectNameStatement() const
+QString ObjectImpType::selectNameStatement() const
 {
     return mselectnamestatement.toString();
 }
