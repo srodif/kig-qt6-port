@@ -7,6 +7,7 @@
 #include "../objects/common.h"
 
 #include <string>
+#include <KLazyLocalizedString>
 
 class ObjectImpType;
 
@@ -17,8 +18,8 @@ class ObjectImpType;
  * of the arguments it wants.  This specification is given as an array
  * of ArgsParser::spec structs.  This struct contains a pointer to an
  * ObjectImpType ( which is the type you want the argument to have ),
- * a string ( which is an I18N_NOOP'd string describing what you will
- * be using the argument for ) and a boolean ( which says whether the
+ * a string ( which is an I18N_NOOP'd string describing what you will  //I18N_NOOP deprecated, KLazyLocalizedString
+ * be using the argument for ) and a boolean ( which says whether the  //used instead. So, changing the data type.
  * constructed object is by construction on the curve argument ( if
  * the constructed object is a point ), or whether the constructed
  * object is by construction through the point argument ( if the
@@ -98,8 +99,8 @@ public:
     enum { Invalid = 0, Valid = 1, Complete = 2 };
     struct spec {
         const ObjectImpType *type;
-        std::string usetext;
-        std::string selectstat;
+        KLazyLocalizedString usetext;
+        KLazyLocalizedString selectstat;
         bool onOrThrough;
     };
 
@@ -133,13 +134,13 @@ public:
      * if sel were used as parents.
      * \p o should be in \p sel ...
      */
-    std::string usetext(const ObjectImp *o, const Args &sel) const;
+    KLazyLocalizedString usetext(const ObjectImp *o, const Args &sel) const;
 
     /**
      * returns the select statement for the next selectable argument
      * when the given args are selected.
      */
-    std::string selectStatement(const Args &sel) const;
+    KLazyLocalizedString selectStatement(const Args &sel) const;
 
     // this reorders the objects or args so that they are in the same
     // order as the requested arguments..
