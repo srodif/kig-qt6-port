@@ -17,7 +17,7 @@ public:
     ObjectImp *calc(const Args &args, const KigDocument &) const override;
     const ObjectImpType *resultId() const override;
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &o, ObjectTypeCalcer &c, KigPart &d, KigWidget &w, NormalMode &m) const override;
 };
 
