@@ -15,6 +15,9 @@
 #include "../../objects/object_holder.h"
 #include "../../objects/object_type.h"
 
+#include <KLazyLocalizedString>
+#include <QList>
+
 void ObjectTypeActionsProvider::fillUpMenu(NormalModePopupObjects &popup, int menu, int &nextfree)
 {
     if (popup.objects().size() != 1)
@@ -27,7 +30,7 @@ void ObjectTypeActionsProvider::fillUpMenu(NormalModePopupObjects &popup, int me
         return;
     const ObjectType *t = c->type();
 
-    QStringList l = t->specialActions();
+    QList<KLazyLocalizedString> l = t->specialActions();
     mnoa = l.count();
     for (int i = 0; i < mnoa; ++i)
         popup.addInternalAction(menu, l.at(i), nextfree++);
