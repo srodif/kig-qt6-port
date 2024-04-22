@@ -80,7 +80,8 @@ QStringList getDataFiles(const QString &folder)
 }
 
 // export this class from this library...
-K_PLUGIN_CLASS_WITH_JSON(KigPart, "kig_part.json")
+// K_PLUGIN_CLASS_WITH_JSON(KigPart, "kig_part.json") // TODO check
+
 
 SetCoordinateSystemAction::SetCoordinateSystemAction(KigPart &d, KActionCollection *parent)
     : KSelectAction(i18n("&Set Coordinate System"), &d)
@@ -165,7 +166,7 @@ bool KigPrintDialogPage::isValid(QString &)
     return true;
 }
 
-KigPart::KigPart(QWidget *parentWidget, QObject *parent, const QVariantList &)
+KigPart::KigPart(KigPart &d /*QWidget *parentWidget*/, QObject *parent, const QVariantList &)
     : KParts::ReadWritePart(parent)
     , mMode(nullptr)
     , mRememberConstruction(nullptr)
@@ -174,6 +175,7 @@ KigPart::KigPart(QWidget *parentWidget, QObject *parent, const QVariantList &)
     mMode = new NormalMode(*this);
 
     // we need a widget, to actually show the document
+    QWidget *parentWidget = qobject_cast<QWidget *>(parent);
     m_widget = new KigView(this, false, parentWidget);
     m_widget->setObjectName(QStringLiteral("kig_view"));
     // notify the part that this is our internal widget
@@ -220,7 +222,6 @@ void KigPart::setupActions()
     connect(aInvertSelection, &QAction::triggered, this, &KigPart::slotInvertSelection);
 
     // we need icons...
-    KIconLoader *l = iconLoader();
 
     aDeleteObjects = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("&Delete Objects"), this);
     actionCollection()->addAction(QStringLiteral("delete_objects"), aDeleteObjects);
@@ -275,7 +276,7 @@ void KigPart::setupActions()
 
     a = KStandardAction::fitToPage(m_widget, SLOT(slotRecenterScreen()), actionCollection());
     // Why isn't there an icon for this?
-    a->setIcon(QIcon(new KIconEngine("view_fit_to_page", l)));
+    a->setIcon(QIcon(KIconLoader::global()->loadIcon(QLatin1String("view_fit_to_page"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)));
     a->setToolTip(i18n("Recenter the screen on the document"));
     a->setWhatsThis(i18n("Recenter the screen on the document"));
 
@@ -659,7 +660,7 @@ void KigPart::delObjects(const std::vector<ObjectHolder *> &os)
 
 void KigPart::enableConstructActions(bool enabled)
 {
-    for_each(aActions.begin(), aActions.end(), bind2nd(mem_fun(&QAction::setEnabled), enabled));
+    for_each(aActions.begin(), aActions.end(), [enabled](QAction* action) { action->setEnabled(enabled); });
 }
 
 void KigPart::unplugActionLists()
