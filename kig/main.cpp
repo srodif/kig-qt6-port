@@ -53,7 +53,6 @@ int main(int argc, char **argv)
     QCoreApplication::setOrganizationDomain(i18n("kde.org"));
     KAboutData::setApplicationData(about);
 
-    //dataMigration(); // This needs the about AboutData to be set up
     about.setupCommandLine(&parser);
     parser.addOption(convertToNativeOption);
     parser.addOption(outfileOption);
