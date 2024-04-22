@@ -28,6 +28,7 @@
 #include <algorithm>
 #include <functional>
 #include <iterator>
+#include <KLazyLocalizedString>
 
 const QString StandardConstructorBase::descriptiveName() const
 {
@@ -103,7 +104,7 @@ void SimpleObjectTypeConstructor::drawprelim(const ObjectDrawer &drawer,
 {
     Args args;
     using namespace std;
-    transform(parents.begin(), parents.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
+    transform(parents.begin(), parents.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
     ObjectImp *data = mtype->calc(args, doc);
     drawer.draw(*data, p, true);
     delete data;
@@ -163,7 +164,7 @@ void MultiObjectTypeConstructor::drawprelim(const ObjectDrawer &drawer, KigPaint
 {
     Args args;
     using namespace std;
-    transform(parents.begin(), parents.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
+    transform(parents.begin(), parents.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
     for (vector<int>::const_iterator i = mparams.begin(); i != mparams.end(); ++i) {
         IntImp param(*i);
@@ -266,31 +267,31 @@ void MergeObjectConstructor::handlePrelim(KigPainter &p, const std::vector<Objec
     };
 }
 
-QString StandardConstructorBase::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString StandardConstructorBase::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
 {
     using namespace std;
     Args args;
-    transform(sel.begin(), sel.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
+    transform(sel.begin(), sel.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
-    std::string ret = margsparser.usetext(o.imp(), args);
-    if (ret.empty())
-        return QString();
-    return i18n(ret.c_str());
+    KLazyLocalizedString ret = margsparser.usetext(o.imp(), args);
+    if (ret.isEmpty())
+        return KLazyLocalizedString();
+    return ret;
 }
 
-QString StandardConstructorBase::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString StandardConstructorBase::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
 {
     using namespace std;
     Args args;
-    transform(sel.begin(), sel.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
+    transform(sel.begin(), sel.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
-    std::string ret = margsparser.selectStatement(args);
-    if (ret.empty())
-        return QString();
-    return i18n(ret.c_str());
+    KLazyLocalizedString ret = margsparser.selectStatement(args);
+    if (ret.isEmpty())
+        return KLazyLocalizedString();
+    return ret;
 }
 
-QString MergeObjectConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const
+KLazyLocalizedString MergeObjectConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const
 {
     for (vectype::const_iterator i = mctors.begin(); i != mctors.end(); ++i) {
         std::vector<ObjectCalcer *> args(sel);
@@ -298,10 +299,10 @@ QString MergeObjectConstructor::useText(const ObjectCalcer &o, const std::vector
         if (w != ArgsParser::Invalid)
             return (*i)->useText(o, sel, d, v);
     };
-    return QString();
+    return KLazyLocalizedString();
 }
 
-QString MergeObjectConstructor::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const
+KLazyLocalizedString MergeObjectConstructor::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const
 {
     for (vectype::const_iterator i = mctors.begin(); i != mctors.end(); ++i) {
         std::vector<ObjectCalcer *> args(sel);
@@ -309,7 +310,7 @@ QString MergeObjectConstructor::selectStatement(const std::vector<ObjectCalcer *
         if (wa != ArgsParser::Invalid)
             return (*i)->selectStatement(sel, d, w);
     };
-    return QString();
+    return KLazyLocalizedString();
 }
 
 MacroConstructor::MacroConstructor(const ObjectHierarchy &hier, const QString &name, const QString &desc, const QByteArray &iconfile)
@@ -380,28 +381,28 @@ void MacroConstructor::handleArgs(const std::vector<ObjectCalcer *> &os, KigPart
     d.addObjects(hos);
 }
 
-QString MacroConstructor::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString MacroConstructor::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
 {
     using namespace std;
     Args args;
-    transform(sel.begin(), sel.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
-    std::string ret = mparser.selectStatement(args);
-    if (ret.empty())
-        return QString();
+    transform(sel.begin(), sel.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
+    KLazyLocalizedString ret = mparser.selectStatement(args);
+    if (ret.isEmpty())
+        return KLazyLocalizedString();
     else
-        return i18n(ret.c_str());
+        return ret;
 }
 
-QString MacroConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString MacroConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
 {
     using namespace std;
     Args args;
-    transform(sel.begin(), sel.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
-    std::string ret = mparser.usetext(o.imp(), args);
-    if (ret.empty())
-        return QString();
+    transform(sel.begin(), sel.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
+    KLazyLocalizedString ret = mparser.usetext(o.imp(), args);
+    if (ret.isEmpty())
+        return KLazyLocalizedString();
     else
-        return i18n(ret.c_str());
+        return ret;
 }
 
 void MacroConstructor::handlePrelim(KigPainter &p, const std::vector<ObjectCalcer *> &sel, const KigDocument &doc, const KigWidget &) const
@@ -411,7 +412,7 @@ void MacroConstructor::handlePrelim(KigPainter &p, const std::vector<ObjectCalce
 
     using namespace std;
     Args args;
-    transform(sel.begin(), sel.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
+    transform(sel.begin(), sel.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
     args = mparser.parse(args);
     std::vector<ObjectImp *> ret = mhier.calc(args, doc);
     for (uint i = 0; i < ret.size(); ++i) {
@@ -497,11 +498,11 @@ bool ObjectConstructor::isIntersection() const
 }
 
 PropertyObjectConstructor::PropertyObjectConstructor(const ObjectImpType *imprequirement,
-                                                     const char *usetext,
-                                                     const char *selectstat,
-                                                     const QString &descname,
-                                                     const QString &desc,
-                                                     const QString &iconfile,
+                                                     const KLazyLocalizedString usetext,
+                                                     const KLazyLocalizedString selectstat,
+                                                     const QString descname,
+                                                     const QString desc,
+                                                     const QString iconfile,
                                                      const char *propertyinternalname)
     : StandardConstructorBase(descname, desc, iconfile, mparser)
     , mpropinternalname(propertyinternalname)
