@@ -8,7 +8,7 @@
 
 #include <QDialog>
 
-class Ui_EditTypeWidget;
+//class Ui_EditTypeWidget;
 
 /**
  * Simply dialog that allow the user the editing of a macro type...
@@ -17,7 +17,7 @@ class EditType : public QDialog
 {
     Q_OBJECT
 
-    Ui_EditTypeWidget *medittypewidget;
+    QDialog *medittypewidget;
 
     QString mname;
     QString mdesc;
