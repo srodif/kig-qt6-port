@@ -104,7 +104,7 @@ public:
     ~ConstructMode();
 
     void handlePrelim(const std::vector<ObjectCalcer *> &os, const QPoint &p, KigPainter &, KigWidget &w) override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &args, const KigWidget &w) override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &args, const KigWidget &w) override;
     int isAlreadySelectedOK(const std::vector<ObjectCalcer *> &, const int &) override;
     int wantArgs(const std::vector<ObjectCalcer *> &, KigDocument &d, KigWidget &w) override;
     void handleArgs(const std::vector<ObjectCalcer *> &args, KigWidget &w) override;
@@ -136,7 +136,7 @@ public:
     using BaseMode::rightClicked;
 
     void handlePrelim(const std::vector<ObjectCalcer *> &os, const QPoint &p, KigPainter &, KigWidget &w) override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &args, const KigWidget &w) override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &args, const KigWidget &w) override;
     int isAlreadySelectedOK(const std::vector<ObjectCalcer *> &, const int &) override;
     int wantArgs(const std::vector<ObjectCalcer *> &, KigDocument &d, KigWidget &w) override;
     void handleArgs(const std::vector<ObjectCalcer *> &args, KigWidget &w) override;
