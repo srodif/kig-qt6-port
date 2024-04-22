@@ -6,6 +6,7 @@
 
 #include "argsparser.h"
 #include "object_hierarchy.h"
+#include <KLazyLocalizedString>
 
 class KigPainter;
 class KigDocument;
@@ -60,13 +61,13 @@ public:
      * return a string describing what you would use \p o for if it were
      * selected...  \p o should be part of \p sel .
      */
-    virtual QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const = 0;
+    virtual KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const = 0;
 
     /**
      * return a string describing what argument you want next, if the
      * given selection of objects were selected.
      */
-    virtual QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const = 0;
+    virtual KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const = 0;
 
     /**
      * show a preliminary version of what you would do when \ref handleArgs
@@ -126,9 +127,9 @@ public:
 
     virtual void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const = 0;
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
 
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     virtual std::vector<ObjectHolder *> build(const std::vector<ObjectCalcer *> &os, KigDocument &d, KigWidget &w) const = 0;
 };
@@ -166,12 +167,12 @@ class PropertyObjectConstructor : public StandardConstructorBase
 
 public:
     explicit PropertyObjectConstructor(const ObjectImpType *imprequirement,
-                                        KLazyLocalizedString usetext,
-                                        KLazyLocalizedString selectstat,
-                                        KLazyLocalizedString descname,
-                                        KLazyLocalizedString desc,
-                                        KLazyLocalizedString iconfile,
-                                        KLazyLocalizedString propertyinternalname);
+                                       KLazyLocalizedString usetext,
+                                       KLazyLocalizedString selectstat,
+                                       QString descname,
+                                       QString desc,
+                                       QString iconfile,
+                                       const char *propertyinternalname);
 
     ~PropertyObjectConstructor();
 
@@ -254,9 +255,9 @@ public:
 
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
 
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     void handleArgs(const std::vector<ObjectCalcer *> &os, KigPart &d, KigWidget &v) const override;
 
@@ -304,9 +305,9 @@ public:
 
     void handleArgs(const std::vector<ObjectCalcer *> &os, KigPart &d, KigWidget &v) const override;
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
 
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     void handlePrelim(KigPainter &p, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
 
