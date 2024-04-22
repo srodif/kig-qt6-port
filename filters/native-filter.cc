@@ -162,9 +162,9 @@ KigDocument *KigFilterNative::load(const QDomDocument &doc)
     if (!match.hasMatch())
         KIG_FILTER_PARSE_ERROR;
     bool ok = true;
-    int major = match.captured(1).toInt(&ok);
+    int major = match.capturedView(1).toInt(&ok);
     bool ok2 = true;
-    int minor = match.captured(2).toInt(&ok2);
+    int minor = match.capturedView(2).toInt(&ok2);
     if (!ok || !ok2)
         KIG_FILTER_PARSE_ERROR;
 
@@ -679,7 +679,7 @@ bool KigFilterNative::save07(const KigDocument &data, const QString &outfile)
     // we have an empty outfile, so we have to print all to stdout
     if (outfile.isEmpty()) {
         QTextStream stdoutstream(stdout, QIODevice::WriteOnly);
-        // stdoutstream.setEncoding('UTF8'); // UTF8 is the default
+        stream.setEncoding(QStringConverter::Utf8);
         return save07(data, stdoutstream);
     }
     if (!outfile.endsWith(QLatin1String(".kig"), Qt::CaseInsensitive)) {
@@ -725,7 +725,7 @@ bool KigFilterNative::save07(const KigDocument &data, const QString &outfile)
             return false;
         }
         QTextStream stream(&file);
-        // stream.setEncoding();
+        stream.setEncoding(QStringConverter::Utf8);
         return save07(data, stream);
     }
 
