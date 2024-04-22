@@ -11,6 +11,10 @@
 
 #include <KParts/ReadWritePart>
 #include <KSelectAction>
+#include <KIconLoader>
+#include <KLocalizedString>
+#include <KPluginFactory>
+
 
 #include <vector>
 
@@ -56,7 +60,8 @@ public:
     /**
      * Default constructor
      */
-    explicit KigPart(QWidget *parentWidget, QObject *parent = nullptr, const QVariantList & = QVariantList());
+    explicit KigPart(KigPart &d /*QWidget *parentWidget*/, QObject *parent = nullptr, const QVariantList & = QVariantList());
+
 
     /**
      * Destructor
@@ -134,12 +139,12 @@ public:
     void rememberConstruction(ConstructibleAction *);
     void coordSystemChanged(int);
 
-Q_SIGNALS: // these signals are for telling KigView it should do something...
-    /**
-     * emitted when we want to suggest a new size for the view
-     * ( basically after loading a file, and on startup... )
-     */
-    void recenterScreen();
+    Q_SIGNALS: // these signals are for telling KigView it should do something...
+        /**
+         * emitted when we want to suggest a new size for the view
+         * ( basically after loading a file, and on startup... )
+         */
+        void recenterScreen();
 
     /************** working with our internal document **********/
 public:
