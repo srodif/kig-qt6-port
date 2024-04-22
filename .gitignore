@@ -27,3 +27,4 @@ CMakeLists.txt.user*
 .idea
 /cmake-build*
 /scripting-api/build
+.vscode
