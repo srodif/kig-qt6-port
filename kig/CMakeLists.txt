@@ -16,7 +16,7 @@ file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kig.png")
 ecm_add_app_icon(kig_SRCS ICONS ${ICONS_SRCS})
 add_executable(kig ${kig_SRCS})
 
-target_link_libraries(kig KF5::Parts KF5::ConfigCore KF5::Crash)
+target_link_libraries(kig KF6::Parts KF6::ConfigCore KF6::Crash KF6::I18n)
 
 install(TARGETS kig ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
