@@ -22,7 +22,7 @@ ImageExporterOptions::ImageExporterOptions(QWidget *parent)
     msize = QSize(1, 1);
 
     // detecting the dpi resolutions
-    QScreen *screen = QGuiApplication::primaryScreen();
+    QScreen *screen = QWidget(parent)::screen();
     qreal dpiX = screen->logicalDotsPerInchX();
     qreal dpiY = screen->logicalDotsPerInchY();
     // and creating the Unit objects
