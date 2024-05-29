@@ -91,7 +91,6 @@ void EditType::slotOk()
         iconchanged = true;
     }
     done(namechanged || descchanged || iconchanged);
-    */
 }
 
 void EditType::slotCancel()
