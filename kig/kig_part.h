@@ -60,7 +60,7 @@ public:
     /**
      * Default constructor
      */
-    explicit KigPart(KigPart &d /*QWidget *parentWidget*/, QObject *parent = nullptr, const QVariantList & = QVariantList());
+    explicit KigPart(QObject *parent = nullptr, const KPluginMetaData &data = {});
 
 
     /**
