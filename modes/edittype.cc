@@ -36,8 +36,8 @@ EditType::EditType(QWidget *parent, const QString &name, const QString &desc, co
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     mainLayout->addWidget(buttonBox);
 
-    medittypewidget = new QDialog();
-    // medittypewidget->setupUi(mainWidget); // ui_edittypewidget change
+    medittypewidget = new Ui_EditTypeWidget();
+    medittypewidget->setupUi(mainWidget);
     mainWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     // ui_edittypewidget change
