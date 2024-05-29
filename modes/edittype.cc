@@ -9,7 +9,7 @@
 #include "edittype.h"
 
 #include <QWidget>
-//#include "ui_edittypewidget.h" //ui_edittypewidget change
+#include "ui_edittypewidget.h"
 
 #include <KHelpClient>
 #include <KMessageBox>
