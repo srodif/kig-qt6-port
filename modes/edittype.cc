@@ -24,8 +24,7 @@ EditType::EditType(QWidget *parent, const QString &name, const QString &desc, co
     , mdesc(desc)
     , micon(icon)
 {
-    // setWindowTitle(i18nc("@title:window", "Edit Type")); // KLocalizedString TODO
-    setWindowTitle("Edit Type window");
+    setWindowTitle(i18nc("@title:window", "Edit Type"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help);
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
