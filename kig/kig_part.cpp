@@ -175,8 +175,7 @@ KigPart::KigPart(QObject *parent, const KPluginMetaData &data)
     mMode = new NormalMode(*this);
 
     // we need a widget, to actually show the document
-    QWidget *parentWidget = qobject_cast<QWidget *>(parent);
-    m_widget = new KigView(this, false, parentWidget);
+    m_widget = new KigView(this, false, widget());
     m_widget->setObjectName(QStringLiteral("kig_view"));
     // notify the part that this is our internal widget
     setWidget(m_widget);
