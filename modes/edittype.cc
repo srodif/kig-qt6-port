@@ -67,8 +67,6 @@ void EditType::slotHelp()
 
 void EditType::slotOk()
 {
-    /* ui_edittypewidget change
-    
     QString tmp = medittypewidget->editName->text();
     if (tmp.isEmpty()) {
         KMessageBox::information(this, i18n("The name of the macro can not be empty."));
