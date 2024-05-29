@@ -139,12 +139,12 @@ public:
     void rememberConstruction(ConstructibleAction *);
     void coordSystemChanged(int);
 
-    Q_SIGNALS: // these signals are for telling KigView it should do something...
-        /**
-         * emitted when we want to suggest a new size for the view
-         * ( basically after loading a file, and on startup... )
-         */
-        void recenterScreen();
+Q_SIGNALS: // these signals are for telling KigView it should do something...
+    /**
+     * emitted when we want to suggest a new size for the view
+     * ( basically after loading a file, and on startup... )
+     */
+    void recenterScreen();
 
     /************** working with our internal document **********/
 public:
