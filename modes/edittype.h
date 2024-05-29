@@ -17,7 +17,7 @@ class EditType : public QDialog
 {
     Q_OBJECT
 
-    QDialog *medittypewidget;
+    Ui_EditTypeWidget *medittypewidget;
 
     QString mname;
     QString mdesc;
