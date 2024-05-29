@@ -18,8 +18,8 @@ class ObjectImpType;
  * of the arguments it wants.  This specification is given as an array
  * of ArgsParser::spec structs.  This struct contains a pointer to an
  * ObjectImpType ( which is the type you want the argument to have ),
- * a string ( which is an I18N_NOOP'd string describing what you will  //I18N_NOOP deprecated, KLazyLocalizedString
- * be using the argument for ) and a boolean ( which says whether the  //used instead. So, changing the data type.
+ * a KLazyLocalizedString describing what you will
+ * be using the argument for and a boolean ( which says whether the
  * constructed object is by construction on the curve argument ( if
  * the constructed object is a point ), or whether the constructed
  * object is by construction through the point argument ( if the
