@@ -80,7 +80,7 @@ QStringList getDataFiles(const QString &folder)
 }
 
 // export this class from this library...
-// K_PLUGIN_CLASS_WITH_JSON(KigPart, "kig_part.json") // TODO check
+K_PLUGIN_CLASS_WITH_JSON(KigPart, "kig_part.json")
 
 
 SetCoordinateSystemAction::SetCoordinateSystemAction(KigPart &d, KActionCollection *parent)
