@@ -166,8 +166,8 @@ bool KigPrintDialogPage::isValid(QString &)
     return true;
 }
 
-KigPart::KigPart(KigPart &d /*QWidget *parentWidget*/, QObject *parent, const QVariantList &)
-    : KParts::ReadWritePart(parent)
+KigPart::KigPart(QObject *parent, const KPluginMetaData &data)
+    : KParts::ReadWritePart(parent, data)
     , mMode(nullptr)
     , mRememberConstruction(nullptr)
     , mdocument(new KigDocument())
