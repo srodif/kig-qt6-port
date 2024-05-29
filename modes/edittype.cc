@@ -40,16 +40,15 @@ EditType::EditType(QWidget *parent, const QString &name, const QString &desc, co
     medittypewidget->setupUi(mainWidget);
     mainWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
-    // ui_edittypewidget change
-    // medittypewidget->editName->setText(mname);
-    // medittypewidget->editName->setWhatsThis(i18n("Here you can edit the name of the current macro type."));
-    // medittypewidget->editDescription->setText(mdesc);
-    // medittypewidget->editDescription->setWhatsThis(
-    //     i18n("Here you can edit the description of the current macro type. "
-    //          "This field is optional, so you can also leave this empty: if "
-    //          "you do so, then your macro type will have no description."));
-    // medittypewidget->typeIcon->setIcon(!micon.isEmpty() ? micon : QStringLiteral("system-run"));
-    // medittypewidget->typeIcon->setWhatsThis(i18n("Use this button to change the icon of the current macro type."));
+    medittypewidget->editName->setText(mname);
+    medittypewidget->editName->setWhatsThis(i18n("Here you can edit the name of the current macro type."));
+    medittypewidget->editDescription->setText(mdesc);
+    medittypewidget->editDescription->setWhatsThis(
+        i18n("Here you can edit the description of the current macro type. "
+             "This field is optional, so you can also leave this empty: if "
+             "you do so, then your macro type will have no description."));
+    medittypewidget->typeIcon->setIcon(!micon.isEmpty() ? micon : QStringLiteral("system-run"));
+    medittypewidget->typeIcon->setWhatsThis(i18n("Use this button to change the icon of the current macro type."));
 
     connect(this, SIGNAL(helpClicked()), this, SLOT(slotHelp()));
     connect(okButton, &QAbstractButton::clicked, this, &EditType::slotOk);
