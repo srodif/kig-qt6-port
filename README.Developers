@@ -1,24 +1,21 @@
-Hi, here are some things that might not be immediately clear :
+Open source contribution in KDE Community project Kig. Worked on maintaining and porting the C++ codebase from Qt5 to Qt6.
+Repository contains the kig project, along with some accepted and some pending merge requests.
 
-- There are different source dirs ( kig, objects, misc, filters and
-  modes ) ( just in case this wasn't clear. )
 
-- for testing code, i don't really know how you're supposed to do this with
-  kparts, so i just do a "make install" every time, and then simply run the
-  program, you prolly want to do "./configure --enable-debug=full
-  --prefix=/usr/local/kde3" (meanwhile, i found out, the solution is in a
-  developer faq on developer.kde.org
-  (http://developer.kde.org/documentation/other/developer-faq.html#q67.1)
+Original repository at: 
+https://invent.kde.org/education/kig/
 
-- There is some documentation about the design in the file DESIGN
+Contribution initial repository at:
+https://invent.kde.org/srodif/kig
+
+From Kig developers:
 
 - if you want to contribute, your work is more than welcome, no matter where
-  you want to help: translation, coding, art, just send us a mail at
+  you want to help: translation, coding, art, just send a mail at
   kde-edu-devel@kde.org (preferably before you start, so you won't be
-  doing unnecessary work or something like that), if you have cvs access,
-  you can of course always commit to cvs
+  doing unnecessary work or something like that)
 
-HISTORY
+HISTORY (from developers)
 
 I started Kig because we were using "Cabri" in school, a proprietary
 windows-only app.  When I started looking for free alternatives that ran on
