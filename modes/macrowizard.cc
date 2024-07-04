@@ -12,7 +12,8 @@
 #include <QLayout>
 
 #include <KHelpClient>
-#include <KIconButton>
+#include <QToolButton>
+#include <QIcon>
 #include <KLocalizedString>
 
 class GivenArgsPage : public QWizardPage
@@ -134,10 +135,10 @@ MacroInfoPage::MacroInfoPage(QWidget *parent)
     lay->addWidget(label, 2, 0);
     QHBoxLayout *iconlay = new QHBoxLayout();
     lay->addLayout(iconlay, 2, 1);
-    KIconButton *iconbutton = new KIconButton(this);
+    QToolButton *iconbutton = new QToolButton(this);
     iconlay->addWidget(iconbutton);
     label->setBuddy(iconbutton);
-    iconbutton->setIcon(QStringLiteral("system-run"));
+    iconbutton->setIcon(QIcon::fromTheme("system-run"));
     iconlay->addItem(new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Fixed));
 
     registerField(QStringLiteral("name*"), editname);
