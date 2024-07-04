@@ -25,6 +25,7 @@
 #include <QRect>
 
 #include <KIconEngine>
+#include <KLazyLocalizedString>
 #include <KIconLoader>
 
 struct color_struct {
@@ -32,13 +33,13 @@ struct color_struct {
     const char *name;
 };
 
-static const color_struct colors[] = {{Qt::black, I18N_NOOP("Black")},
-                                      {Qt::gray, I18N_NOOP("Gray")},
-                                      {Qt::red, I18N_NOOP("Red")},
-                                      {Qt::green, I18N_NOOP("Green")},
-                                      {Qt::cyan, I18N_NOOP("Cyan")},
-                                      {Qt::yellow, I18N_NOOP("Yellow")},
-                                      {Qt::darkRed, I18N_NOOP("Dark Red")}};
+static const color_struct colors[] = {{Qt::black, "Black"},
+                                      {Qt::gray, "Gray"},
+                                      {Qt::red, "Red"},
+                                      {Qt::green, "Green"},
+                                      {Qt::cyan, "Cyan"},
+                                      {Qt::yellow, "Yellow"},
+                                      {Qt::darkRed, "Dark Red"}};
 
 const int numberofcolors = 7; // is there a better way to calc that?
 
@@ -65,7 +66,7 @@ void BuiltinObjectActionsProvider::fillUpMenu(NormalModePopupObjects &popup, int
         }
         nextfree += 2;
         popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String("transform-move"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), i18n("&Move"), nextfree++);
-        popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String("edit-delete"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr), i18n("&Delete"), nextfree++);
+        popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String("edit-delete"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), i18n("&Delete"), nextfree++);
     } else if (menu == NormalModePopupObjects::SetColorMenu) {
         QPixmap p(20, 20);
         for (int i = 0; i < numberofcolors; i++) {

@@ -17,10 +17,11 @@
 #include "../misc/common.h"
 
 #include <QStringList>
+#include <KLazyLocalizedString>
 
 static const ArgsParser::spec argsspecSegmentAB[] = {
-    {PointImp::stype(), I18N_NOOP("Construct a segment starting at this point"), I18N_NOOP("Select the start point of the new segment..."), true},
-    {PointImp::stype(), I18N_NOOP("Construct a segment ending at this point"), I18N_NOOP("Select the end point of the new segment..."), true}};
+    {PointImp::stype(), kli18n("Construct a segment starting at this point"), kli18n("Select the start point of the new segment..."), true},
+    {PointImp::stype(), kli18n("Construct a segment ending at this point"), kli18n("Select the end point of the new segment..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(SegmentABType)
 
@@ -44,11 +45,11 @@ ObjectImp *SegmentABType::calcx(const Coordinate &a, const Coordinate &b) const
     return new SegmentImp(a, b);
 }
 
-static const char constructlineabstat[] = I18N_NOOP("Construct a line through this point");
+static const KLazyLocalizedString constructlineabstat = kli18n("Construct a line through this point");
 
 static const ArgsParser::spec argsspecLineAB[] = {
-    {PointImp::stype(), constructlineabstat, I18N_NOOP("Select a point for the line to go through..."), true},
-    {PointImp::stype(), constructlineabstat, I18N_NOOP("Select another point for the line to go through..."), true}};
+    {PointImp::stype(), constructlineabstat, kli18n("Select a point for the line to go through..."), true},
+    {PointImp::stype(), constructlineabstat, kli18n("Select another point for the line to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(LineABType)
 
@@ -72,11 +73,11 @@ ObjectImp *LineABType::calcx(const Coordinate &a, const Coordinate &b) const
     return new LineImp(a, b);
 }
 
-static const char constructhalflinestartingstat[] = I18N_NOOP("Construct a half-line starting at this point");
+static const KLazyLocalizedString constructhalflinestartingstat = kli18n("Construct a half-line starting at this point");
 
 static const ArgsParser::spec argsspecRayAB[] = {
-    {PointImp::stype(), constructhalflinestartingstat, I18N_NOOP("Select the start point of the new half-line..."), true},
-    {PointImp::stype(), I18N_NOOP("Construct a half-line through this point"), I18N_NOOP("Select a point for the half-line to go through..."), true}};
+    {PointImp::stype(), constructhalflinestartingstat, kli18n("Select the start point of the new half-line..."), true},
+    {PointImp::stype(), kli18n("Construct a half-line through this point"), kli18n("Select a point for the half-line to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(RayABType)
 
@@ -101,7 +102,7 @@ ObjectImp *RayABType::calcx(const Coordinate &a, const Coordinate &b) const
 }
 
 static const ArgsParser::spec argspecSegmentAxisABType[] = {
-    {SegmentImp::stype(), I18N_NOOP("Construct the axis of this segment"), I18N_NOOP("Select the segment of which you want to draw the axis..."), true}};
+    {SegmentImp::stype(), kli18n("Construct the axis of this segment"), kli18n("Select the segment of which you want to draw the axis..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(SegmentAxisType);
 
@@ -152,8 +153,8 @@ ObjectImp *LinePerpendLPType::calc(const LineData &a, const Coordinate &b) const
 }
 
 static const ArgsParser::spec argsspecLineParallel[] = {
-    {AbstractLineImp::stype(), I18N_NOOP("Construct a line parallel to this line"), I18N_NOOP("Select a line parallel to the new line..."), false},
-    {PointImp::stype(), I18N_NOOP("Construct the parallel line through this point"), I18N_NOOP("Select a point for the new line to go through..."), true}};
+    {AbstractLineImp::stype(), kli18n("Construct a line parallel to this line"), kli18n("Select a line parallel to the new line..."), false},
+    {PointImp::stype(), kli18n("Construct the parallel line through this point"), kli18n("Select a point for the new line to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(LineParallelLPType)
 
@@ -179,8 +180,8 @@ ObjectImp *LineParallelLPType::calc(const LineData &a, const Coordinate &b) cons
 }
 
 static const ArgsParser::spec argsspecLinePerpend[] = {
-    {AbstractLineImp::stype(), I18N_NOOP("Construct a line perpendicular to this line"), I18N_NOOP("Select a line perpendicular to the new line..."), false},
-    {PointImp::stype(), I18N_NOOP("Construct a perpendicular line through this point"), I18N_NOOP("Select a point for the new line to go through..."), true}};
+    {AbstractLineImp::stype(), kli18n("Construct a line perpendicular to this line"), kli18n("Select a line perpendicular to the new line..."), false},
+    {PointImp::stype(), kli18n("Construct a perpendicular line through this point"), kli18n("Select a point for the new line to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(LinePerpendLPType)
 
@@ -218,10 +219,10 @@ const ObjectImpType *LineParallelLPType::resultId() const
     return LineImp::stype();
 }
 
-QStringList SegmentABType::specialActions() const
+QList<KLazyLocalizedString> SegmentABType::specialActions() const
 {
-    QStringList ret;
-    ret << i18n("Set &Length...");
+    QList<KLazyLocalizedString> ret;
+    ret << kli18n("Set &Length...");
     return ret;
 }
 
@@ -246,14 +247,14 @@ void SegmentABType::executeAction(int i, ObjectHolder &, ObjectTypeCalcer &c, Ki
 
     MonitorDataObjects mon(getAllParents(parents));
     parents[1]->move(nb, d.document());
-    KigCommand *cd = new KigCommand(d, i18n("Resize Segment"));
+    KigCommand *cd = new KigCommand(d, kli18n("Resize Segment").toString());
     mon.finish(cd);
     d.history()->push(cd);
 }
 
 static const ArgsParser::spec argsspecLineByVector[] = {
-    {VectorImp::stype(), I18N_NOOP("Construct a line by this vector"), I18N_NOOP("Select a vector in the direction of the new line..."), true},
-    {PointImp::stype(), constructlineabstat, I18N_NOOP("Select a point for the new line to go through..."), true}};
+    {VectorImp::stype(), kli18n("Construct a line by this vector"), kli18n("Select a vector in the direction of the new line..."), true},
+    {PointImp::stype(), constructlineabstat, kli18n("Select a point for the new line to go through..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(LineByVectorType)
 
@@ -289,8 +290,8 @@ const ObjectImpType *LineByVectorType::resultId() const
 }
 
 static const ArgsParser::spec argsspecHalflineByVector[] = {
-    {VectorImp::stype(), I18N_NOOP("Construct a half-line by this vector"), I18N_NOOP("Select a vector in the direction of the new half-line..."), true},
-    {PointImp::stype(), constructhalflinestartingstat, I18N_NOOP("Select the start point of the new half-line..."), true}};
+    {VectorImp::stype(), kli18n("Construct a half-line by this vector"), kli18n("Select a vector in the direction of the new half-line..."), true},
+    {PointImp::stype(), constructhalflinestartingstat, kli18n("Select the start point of the new half-line..."), true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(HalflineByVectorType)
 

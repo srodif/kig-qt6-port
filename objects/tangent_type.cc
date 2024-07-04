@@ -18,11 +18,13 @@
 #include "../kig/kig_part.h"
 #include "../kig/kig_view.h"
 
-static const char constructlinetangentpoint[] = "SHOULDNOTBESEEN";
-static const char selecttangent1[] = I18N_NOOP("Select the curve...");
-static const char selecttangent2[] = I18N_NOOP("Select the point for the tangent to go through...");
+#include <KLazyLocalizedString>
 
-static const ArgsParser::spec argsspecTangentConic[] = {{ConicImp::stype(), "SHOULDNOTBESEEN", selecttangent1, false},
+static const KLazyLocalizedString constructlinetangentpoint = kli18n("SHOULDNOTBESEEN");
+static const KLazyLocalizedString selecttangent1 = kli18n("Select the curve...");
+static const KLazyLocalizedString selecttangent2 = kli18n("Select the point for the tangent to go through...");
+
+static const ArgsParser::spec argsspecTangentConic[] = {{ConicImp::stype(), kli18n("SHOULDNOTBESEEN"), selecttangent1, false},
                                                         {PointImp::stype(), constructlinetangentpoint, selecttangent2, true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(TangentConicType)
@@ -69,7 +71,7 @@ const ObjectImpType *TangentConicType::resultId() const
 
 /*** Arc starts here ***/
 
-static const ArgsParser::spec argsspecTangentArc[] = {{ArcImp::stype(), "SHOULDNOTBESEEN", selecttangent1, false},
+static const ArgsParser::spec argsspecTangentArc[] = {{ArcImp::stype(), kli18n("SHOULDNOTBESEEN"), selecttangent1, false},
                                                       {PointImp::stype(), constructlinetangentpoint, selecttangent2, true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(TangentArcType)
@@ -121,7 +123,7 @@ const ObjectImpType *TangentArcType::resultId() const
 
 /**** Cubic starts here ****/
 
-static const ArgsParser::spec argsspecTangentCubic[] = {{CubicImp::stype(), "SHOULDNOTBESEEN", selecttangent1, false},
+static const ArgsParser::spec argsspecTangentCubic[] = {{CubicImp::stype(), kli18n("SHOULDNOTBESEEN"), selecttangent1, false},
                                                         {PointImp::stype(), constructlinetangentpoint, selecttangent2, true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(TangentCubicType)
@@ -187,7 +189,7 @@ const ObjectImpType *TangentCubicType::resultId() const
 
 /**** Curve (locus) starts here ****/
 
-static const ArgsParser::spec argsspecTangentCurve[] = {{CurveImp::stype(), "SHOULDNOTBESEEN", selecttangent1, false},
+static const ArgsParser::spec argsspecTangentCurve[] = {{CurveImp::stype(), kli18n("SHOULDNOTBESEEN"), selecttangent1, false},
                                                         {PointImp::stype(), constructlinetangentpoint, selecttangent2, true}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(TangentCurveType)

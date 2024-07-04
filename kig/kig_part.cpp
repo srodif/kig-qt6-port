@@ -82,6 +82,7 @@ QStringList getDataFiles(const QString &folder)
 // export this class from this library...
 K_PLUGIN_CLASS_WITH_JSON(KigPart, "kig_part.json")
 
+
 SetCoordinateSystemAction::SetCoordinateSystemAction(KigPart &d, KActionCollection *parent)
     : KSelectAction(i18n("&Set Coordinate System"), &d)
     , md(d)
@@ -165,8 +166,8 @@ bool KigPrintDialogPage::isValid(QString &)
     return true;
 }
 
-KigPart::KigPart(QWidget *parentWidget, QObject *parent, const QVariantList &)
-    : KParts::ReadWritePart(parent)
+KigPart::KigPart(QObject *parent, const KPluginMetaData &data)
+    : KParts::ReadWritePart(parent, data)
     , mMode(nullptr)
     , mRememberConstruction(nullptr)
     , mdocument(new KigDocument())
@@ -174,7 +175,7 @@ KigPart::KigPart(QWidget *parentWidget, QObject *parent, const QVariantList &)
     mMode = new NormalMode(*this);
 
     // we need a widget, to actually show the document
-    m_widget = new KigView(this, false, parentWidget);
+    m_widget = new KigView(this, false, widget());
     m_widget->setObjectName(QStringLiteral("kig_view"));
     // notify the part that this is our internal widget
     setWidget(m_widget);
@@ -220,7 +221,6 @@ void KigPart::setupActions()
     connect(aInvertSelection, &QAction::triggered, this, &KigPart::slotInvertSelection);
 
     // we need icons...
-    KIconLoader *l = iconLoader();
 
     aDeleteObjects = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("&Delete Objects"), this);
     actionCollection()->addAction(QStringLiteral("delete_objects"), aDeleteObjects);
@@ -275,7 +275,7 @@ void KigPart::setupActions()
 
     a = KStandardAction::fitToPage(m_widget, SLOT(slotRecenterScreen()), actionCollection());
     // Why isn't there an icon for this?
-    a->setIcon(QIcon(new KIconEngine("view_fit_to_page", l)));
+    a->setIcon(QIcon(KIconLoader::global()->loadIcon(QLatin1String("view_fit_to_page"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)));
     a->setToolTip(i18n("Recenter the screen on the document"));
     a->setWhatsThis(i18n("Recenter the screen on the document"));
 

@@ -19,7 +19,7 @@ public:
     ObjectImp *calcx(const Coordinate &a, const Coordinate &b) const override;
     const ObjectImpType *resultId() const override;
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     /**
      * execute the \p i 'th action from the specialActions above.
      */

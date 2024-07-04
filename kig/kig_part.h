@@ -11,6 +11,10 @@
 
 #include <KParts/ReadWritePart>
 #include <KSelectAction>
+#include <KIconLoader>
+#include <KLocalizedString>
+#include <KPluginFactory>
+
 
 #include <vector>
 
@@ -56,7 +60,8 @@ public:
     /**
      * Default constructor
      */
-    explicit KigPart(QWidget *parentWidget, QObject *parent = nullptr, const QVariantList & = QVariantList());
+    explicit KigPart(QObject *parent = nullptr, const KPluginMetaData &data = {});
+
 
     /**
      * Destructor

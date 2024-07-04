@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+#include <QString>
+
 class ObjectImpType;
 class ArgsParser;
 
@@ -24,8 +26,8 @@ private:
     uint mnumberofresults;
     bool msaveinputtags; // if true the UseText and SelectStatement are serialized for saving
     std::vector<const ObjectImpType *> margrequirements;
-    std::vector<std::string> musetexts;
-    std::vector<std::string> mselectstatements;
+    QString  musetexts;
+    QString  mselectstatements;
 
     // these two are really part of the constructor...
     int visit(const ObjectCalcer *o, std::map<const ObjectCalcer *, int> &, bool needed, bool neededatend = false);

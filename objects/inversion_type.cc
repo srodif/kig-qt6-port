@@ -16,11 +16,13 @@
 
 #include "../misc/common.h"
 
-static const char str1[] = I18N_NOOP("Invert with respect to this circle");
-static const char str2[] = I18N_NOOP("Select the circle we want to invert against...");
+#include <KLazyLocalizedString>
+
+static const KLazyLocalizedString str1 = kli18n("Invert with respect to this circle");
+static const KLazyLocalizedString str2 = kli18n("Select the circle we want to invert against...");
 
 static const ArgsParser::spec argsspecCircularInversion[] = {
-    {&invertibleimptypeinstance, I18N_NOOP("Compute the inversion of this object"), I18N_NOOP("Select the object to invert..."), false},
+    {&invertibleimptypeinstance, kli18n("Compute the inversion of this object"), kli18n("Select the object to invert..."), false},
     {CircleImp::stype(), str1, str2, false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(CircularInversionType)
@@ -267,7 +269,7 @@ ObjectImp *CircularInversionType::calc(const Args &args, const KigDocument &) co
  */
 
 static const ArgsParser::spec argsspecInvertPoint[] = {
-    {PointImp::stype(), I18N_NOOP("Compute the inversion of this point"), I18N_NOOP("Select the point to invert..."), false},
+    {PointImp::stype(), kli18n("Compute the inversion of this point"), kli18n("Select the point to invert..."), false},
     {CircleImp::stype(), str1, str2, false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(InvertPointType)
@@ -326,7 +328,7 @@ ObjectImp *InvertPointType::calc(const Args &args, const KigDocument &) const
  */
 
 static const ArgsParser::spec argsspecInvertLine[] = {
-    {LineImp::stype(), I18N_NOOP("Compute the inversion of this line"), I18N_NOOP("Select the line to invert..."), false},
+    {LineImp::stype(), kli18n("Compute the inversion of this line"), kli18n("Select the line to invert..."), false},
     {CircleImp::stype(), str1, str2, false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(InvertLineType)
@@ -378,7 +380,7 @@ ObjectImp *InvertLineType::calc(const Args &args, const KigDocument &) const
  */
 
 static const ArgsParser::spec argsspecInvertSegment[] = {
-    {SegmentImp::stype(), I18N_NOOP("Compute the inversion of this segment"), I18N_NOOP("Select the segment to invert..."), false},
+    {SegmentImp::stype(), kli18n("Compute the inversion of this segment"), kli18n("Select the segment to invert..."), false},
     {CircleImp::stype(), str1, str2, false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(InvertSegmentType)
@@ -466,7 +468,7 @@ ObjectImp *InvertSegmentType::calc(const Args &args, const KigDocument &) const
  */
 
 static const ArgsParser::spec argsspecInvertCircle[] = {
-    {CircleImp::stype(), I18N_NOOP("Compute the inversion of this circle"), I18N_NOOP("Select the circle to invert..."), false},
+    {CircleImp::stype(), kli18n("Compute the inversion of this circle"), kli18n("Select the circle to invert..."), false},
     {CircleImp::stype(), str1, str2, false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(InvertCircleType)
@@ -530,7 +532,7 @@ ObjectImp *InvertCircleType::calc(const Args &args, const KigDocument &) const
  */
 
 static const ArgsParser::spec argsspecInvertArc[] = {
-    {ArcImp::stype(), I18N_NOOP("Compute the inversion of this arc"), I18N_NOOP("Select the arc to invert..."), false},
+    {ArcImp::stype(), kli18n("Compute the inversion of this arc"), kli18n("Select the arc to invert..."), false},
     {CircleImp::stype(), str1, str2, false}};
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(InvertArcType)

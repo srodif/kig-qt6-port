@@ -81,7 +81,7 @@ public:
     /**
      * return i18n'd names for the special actions.
      */
-    virtual QStringList specialActions() const;
+    virtual QList<KLazyLocalizedString> specialActions() const;
     /**
      * execute the \p i 'th action from the specialActions above.
      */

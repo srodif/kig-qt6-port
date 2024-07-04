@@ -81,7 +81,7 @@ void TwoOrOneIntersectionConstructor::drawprelim(const ObjectDrawer &drawer,
     Args args;
     if (parents.size() != 2)
         return;
-    transform(parents.begin(), parents.end(), back_inserter(args), std::mem_fun(&ObjectCalcer::imp));
+    transform(parents.begin(), parents.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
     for (int i = -1; i <= 1; i += 2) {
         IntImp param(i);
@@ -178,7 +178,7 @@ void ThreeTwoOneIntersectionConstructor::drawprelim(const ObjectDrawer &drawer,
     Args args;
     if (parents.size() != 2)
         return;
-    transform(parents.begin(), parents.end(), back_inserter(args), std::mem_fun(&ObjectCalcer::imp));
+    transform(parents.begin(), parents.end(), back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
     for (int i = 1; i <= 3; i += 1) {
         IntImp param(i);
@@ -290,7 +290,7 @@ void ConicRadicalConstructor::drawprelim(const ObjectDrawer &drawer, KigPainter 
 {
     if (parents.size() == 2 && parents[0]->imp()->inherits(ConicImp::stype()) && parents[1]->imp()->inherits(ConicImp::stype())) {
         Args args;
-        std::transform(parents.begin(), parents.end(), std::back_inserter(args), std::mem_fun(&ObjectCalcer::imp));
+        std::transform(parents.begin(), parents.end(), std::back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
         for (int i = -1; i < 2; i += 2) {
             IntImp root(i);
             IntImp zeroindex(1);
@@ -324,8 +324,8 @@ std::vector<ObjectHolder *> ConicRadicalConstructor::build(const std::vector<Obj
 }
 
 static const struct ArgsParser::spec argsspecpp[] = {
-    {PointImp::stype(), I18N_NOOP("Moving Point"), I18N_NOOP("Select the moving point, which will be moved around while drawing the locus..."), false},
-    {PointImp::stype(), I18N_NOOP("Following Point"), I18N_NOOP("Select the following point, whose locations the locus will be drawn through..."), true}};
+    {PointImp::stype(), kli18n("Moving Point"), kli18n("Select the moving point, which will be moved around while drawing the locus..."), false},
+    {PointImp::stype(), kli18n("Following Point"), kli18n("Select the following point, whose locations the locus will be drawn through..."), true}};
 
 LocusConstructor::LocusConstructor()
     : StandardConstructorBase(i18n("Locus"), i18n("A locus"), "locus", margsparser)
@@ -403,14 +403,14 @@ std::vector<ObjectHolder *> LocusConstructor::build(const std::vector<ObjectCalc
     return ret;
 }
 
-QString LocusConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString LocusConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (dynamic_cast<const ObjectTypeCalcer *>(&o) && static_cast<const ObjectTypeCalcer &>(o).type()->inherits(ObjectType::ID_ConstrainedPointType)
         && (os.empty() || !dynamic_cast<ObjectTypeCalcer *>(os[0])
             || !static_cast<const ObjectTypeCalcer *>(os[0])->type()->inherits(ObjectType::ID_ConstrainedPointType)))
-        return i18n("Moving Point");
+        return kli18n("Moving Point");
     else
-        return i18n("Dependent Point");
+        return kli18n("Dependent Point");
 }
 
 void ConicRadicalConstructor::plug(KigPart *, KigGUIAction *)
@@ -547,17 +547,17 @@ int PolygonBNPTypeConstructor::wantArgs(const std::vector<ObjectCalcer *> &os, c
     return ArgsParser::Valid;
 }
 
-QString PolygonBNPTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString PolygonBNPTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (os.size() > 3)
-        return i18n("... with this vertex (click on the first vertex to terminate construction)");
+        return kli18n("... with this vertex (click on the first vertex to terminate construction)");
     else
-        return i18n("Construct a polygon with this vertex");
+        return kli18n("Construct a polygon with this vertex");
 }
 
-QString PolygonBNPTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString PolygonBNPTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
 {
-    return i18n("Select a point to be a vertex of the new polygon...");
+    return kli18n("Select a point to be a vertex of the new polygon...");
 }
 
 void PolygonBNPTypeConstructor::drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const
@@ -616,17 +616,17 @@ int OpenPolygonTypeConstructor::wantArgs(const std::vector<ObjectCalcer *> &os, 
     return ArgsParser::Valid;
 }
 
-QString OpenPolygonTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString OpenPolygonTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (os.size() > 2)
-        return i18n("... with this vertex (click again on the last vertex to terminate construction)");
+        return kli18n("... with this vertex (click again on the last vertex to terminate construction)");
     else
-        return i18n("Construct a polygonal line with this vertex");
+        return kli18n("Construct a polygonal line with this vertex");
 }
 
-QString OpenPolygonTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString OpenPolygonTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
 {
-    return i18n("Select a point to be a vertex of the new polygonal line...");
+    return kli18n("Select a point to be a vertex of the new polygonal line...");
 }
 
 void OpenPolygonTypeConstructor::drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const
@@ -655,7 +655,7 @@ void OpenPolygonTypeConstructor::drawprelim(const ObjectDrawer &drawer, KigPaint
  */
 
 static const struct ArgsParser::spec argsspecpv[] = {
-    {FilledPolygonImp::stype(), I18N_NOOP("Polygon"), I18N_NOOP("Construct the vertices of this polygon..."), true}};
+    {FilledPolygonImp::stype(), kli18n("Polygon"), kli18n("Construct the vertices of this polygon..."), true}};
 
 PolygonVertexTypeConstructor::PolygonVertexTypeConstructor()
     : StandardConstructorBase(i18n("Vertices of a Polygon"), i18n("The vertices of a polygon."), "polygonvertices", margsparser)
@@ -715,7 +715,7 @@ bool PolygonVertexTypeConstructor::isTransform() const
  */
 
 static const struct ArgsParser::spec argsspecps[] = {
-    {FilledPolygonImp::stype(), I18N_NOOP("Polygon"), I18N_NOOP("Construct the sides of this polygon..."), false}};
+    {FilledPolygonImp::stype(), kli18n("Polygon"), kli18n("Construct the sides of this polygon..."), false}};
 
 PolygonSideTypeConstructor::PolygonSideTypeConstructor()
     : StandardConstructorBase(i18n("Sides of a Polygon"), i18n("The sides of a polygon."), "polygonsides", margsparser)
@@ -932,15 +932,15 @@ std::vector<ObjectHolder *> PolygonBCVConstructor::build(const std::vector<Objec
     return ret;
 }
 
-QString PolygonBCVConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString PolygonBCVConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     switch (os.size()) {
     case 1:
-        return i18n("Construct a regular polygon with this center");
+        return kli18n("Construct a regular polygon with this center");
         break;
 
     case 2:
-        return i18n("Construct a regular polygon with this vertex");
+        return kli18n("Construct a regular polygon with this vertex");
         break;
 
     case 3:
@@ -951,35 +951,41 @@ QString PolygonBCVConstructor::useText(const ObjectCalcer &, const std::vector<O
         int nsides = computeNsides(c, v, cntrl, winding);
 
         if (winding > 1) {
-            QString result = i18n("Adjust the number of sides (%1/%2)", nsides, winding);
-            return result;
+            // //TODO correct type or call
+            // std::string resultStr = "Adjust the number of sides (" + std::to_string(nsides) + "/" + std::to_string(winding) + ")";
+            // KLazyLocalizedString result = kli18n(resultStr.c_str());
+            // return result;
+            return kli18n("Adjust the number of sides");
         } else {
-            QString result = i18n("Adjust the number of sides (%1)", nsides);
-            return result;
+            // //TODO correct type or call
+            // std::string resultStr = "Adjust the number of sides (" + std::to_string(nsides) + ")";
+            // KLazyLocalizedString result = kli18n(resultStr.c_str());
+            // return result;
+            return kli18n("Adjust the number of sides");
         }
         break;
     }
 
-    return QLatin1String("");
+    return kli18n("");
 }
 
-QString PolygonBCVConstructor::selectStatement(const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString PolygonBCVConstructor::selectStatement(const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     switch (os.size()) {
     case 1:
-        return i18n("Select the center of the new polygon...");
+        return kli18n("Select the center of the new polygon...");
         break;
 
     case 2:
-        return i18n("Select a vertex for the new polygon...");
+        return kli18n("Select a vertex for the new polygon...");
         break;
 
     case 3:
-        return i18n("Move the cursor to get the desired number of sides...");
+        return kli18n("Move the cursor to get the desired number of sides...");
         break;
     }
 
-    return QLatin1String("");
+    return kli18n("");
 }
 
 void PolygonBCVConstructor::drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &doc) const
@@ -993,7 +999,7 @@ void PolygonBCVConstructor::drawprelim(const ObjectDrawer &drawer, KigPainter &p
         assert(parents[3]->imp()->inherits(IntImp::stype()));
 
     Args args;
-    std::transform(parents.begin(), parents.end(), std::back_inserter(args), std::mem_fun(&ObjectCalcer::imp));
+    std::transform(parents.begin(), parents.end(), std::back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
     ObjectImp *data = mtype->calc(args, doc);
     drawer.draw(*data, p, true);
@@ -1059,8 +1065,8 @@ int PolygonBCVConstructor::computeNsides(const Coordinate &c, const Coordinate &
  */
 
 BezierCurveTypeConstructor::BezierCurveTypeConstructor()
-    : PointSequenceConstructor(I18N_NOOP("Bézier Curve by its Control Points"),
-                               I18N_NOOP("Construct a Bézier curve by giving its control points"),
+    : PointSequenceConstructor(i18n("Bézier Curve by its Control Points"),
+                               i18n("Construct a Bézier curve by giving its control points"),
                                "bezierN",
                                BezierCurveType::instance())
 {
@@ -1092,17 +1098,17 @@ int BezierCurveTypeConstructor::wantArgs(const std::vector<ObjectCalcer *> &os, 
     return ArgsParser::Valid;
 }
 
-QString BezierCurveTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString BezierCurveTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (os.size() > 3)
-        return i18n("... with this control point (click again on the last control point to terminate construction)");
+        return kli18n("... with this control point (click again on the last control point to terminate construction)");
     else
-        return i18n("Construct a Bézier curve with this control point");
+        return kli18n("Construct a Bézier curve with this control point");
 }
 
-QString BezierCurveTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString BezierCurveTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
 {
-    return i18n("Select a point to be a control point of the new Bézier curve...");
+    return kli18n("Select a point to be a control point of the new Bézier curve...");
 }
 
 void BezierCurveTypeConstructor::drawprelim(const ObjectDrawer &, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const
@@ -1196,23 +1202,23 @@ void RationalBezierCurveTypeConstructor::handleArgs(const std::vector<ObjectCalc
     d.addObjects(bos);
 }
 
-QString RationalBezierCurveTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString RationalBezierCurveTypeConstructor::useText(const ObjectCalcer &, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (os.size() % 2 == 0)
-        return i18n("... assign this weight to last selected control point");
+        return kli18n("... assign this weight to last selected control point");
 
     if (os.size() > 6)
-        return i18n("... with this control point (click again on the last control point or weight to terminate construction)");
+        return kli18n("... with this control point (click again on the last control point or weight to terminate construction)");
     else
-        return i18n("Construct a rational Bézier curve with this control point");
+        return kli18n("Construct a rational Bézier curve with this control point");
 }
 
-QString RationalBezierCurveTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString RationalBezierCurveTypeConstructor::selectStatement(const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (os.size() % 2 == 0)
-        return i18n("Select a point to be a control point of the new rational Bézier curve...");
+        return kli18n("Select a point to be a control point of the new rational Bézier curve...");
     else
-        return i18n("Select a numeric label to be a weight of last selected point...");
+        return kli18n("Select a numeric label to be a weight of last selected point...");
 }
 
 void RationalBezierCurveTypeConstructor::drawprelim(const ObjectDrawer &, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const
@@ -1285,11 +1291,11 @@ bool RationalBezierCurveTypeConstructor::isTransform() const
  * ConicConic intersection...
  */
 
-static const ArgsParser::spec argsspectc[] = {{ConicImp::stype(), "SHOULD NOT BE SEEN", "SHOULD NOT BE SEEN", true},
-                                              {ConicImp::stype(), "SHOULD NOT BE SEEN", "SHOULD NOT BE SEEN", true}};
+static const ArgsParser::spec argsspectc[] = {{ConicImp::stype(), kli18n("SHOULD NOT BE SEEN"), kli18n("SHOULD NOT BE SEEN"), true},
+                                              {ConicImp::stype(), kli18n("SHOULD NOT BE SEEN"), kli18n("SHOULD NOT BE SEEN"), true}};
 
 ConicConicIntersectionConstructor::ConicConicIntersectionConstructor()
-    : StandardConstructorBase("SHOULDNOTBESEEN", "SHOULDNOTBESEEN", "curvelineintersection", mparser)
+    : StandardConstructorBase(i18n("SHOULDNOTBESEEN"), i18n("SHOULDNOTBESEEN"), "curvelineintersection", mparser)
     , mparser(argsspectc, 2)
 {
 }
@@ -1374,12 +1380,12 @@ ArcLineIntersectionConstructor::~ArcLineIntersectionConstructor()
 {
 }
 
-QString ConicRadicalConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString ConicRadicalConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
 {
     if (o.imp()->inherits(CircleImp::stype()))
-        return i18n("Construct the Radical Lines of This Circle");
+        return kli18n("Construct the Radical Lines of This Circle");
     else
-        return i18n("Construct the Radical Lines of This Conic");
+        return kli18n("Construct the Radical Lines of This Conic");
 }
 
 /*
@@ -1393,13 +1399,13 @@ QString ConicRadicalConstructor::useText(const ObjectCalcer &o, const std::vecto
  */
 
 GenericAffinityConstructor::GenericAffinityConstructor()
-    : MergeObjectConstructor(I18N_NOOP("Generic Affinity"),
-                             I18N_NOOP("The unique affinity that maps three points (or a triangle) onto three other points (or a triangle)"),
+    : MergeObjectConstructor(i18n("Generic Affinity"),
+                             i18n("The unique affinity that maps three points (or a triangle) onto three other points (or a triangle)"),
                              "genericaffinity")
 {
-    SimpleObjectTypeConstructor *b2tr = new SimpleObjectTypeConstructor(AffinityB2TrType::instance(), "SHOULDNOTBESEEN", "SHOULDNOTBESEEN", "genericaffinity");
+    SimpleObjectTypeConstructor *b2tr = new SimpleObjectTypeConstructor(AffinityB2TrType::instance(), i18n("SHOULDNOTBESEEN"), i18n("SHOULDNOTBESEEN"), "genericaffinity");
 
-    SimpleObjectTypeConstructor *gi3p = new SimpleObjectTypeConstructor(AffinityGI3PType::instance(), "SHOULDNOTBESEEN", "SHOULDNOTBESEEN", "genericaffinity");
+    SimpleObjectTypeConstructor *gi3p = new SimpleObjectTypeConstructor(AffinityGI3PType::instance(), i18n("SHOULDNOTBESEEN"), i18n("SHOULDNOTBESEEN"), "genericaffinity");
 
     merge(b2tr);
     merge(gi3p);
@@ -1600,53 +1606,53 @@ void MeasureTransportConstructor::drawprelim(const ObjectDrawer &drawer,
 {
     Args args;
     using namespace std;
-    transform(parents.begin(), parents.end(), back_inserter(args), mem_fun(&ObjectCalcer::imp));
+    transform(parents.begin(), parents.end(), back_inserter(args), mem_fn(&ObjectCalcer::imp));
     ObjectImp *data = mtype->calc(args, doc);
     drawer.draw(*data, p, true);
     delete data;
 }
 
-QString MeasureTransportConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString MeasureTransportConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     if (o.imp()->inherits(SegmentImp::stype()))
-        return i18n("Segment to transport");
+        return kli18n("Segment to transport");
     if (o.imp()->inherits(ArcImp::stype()))
-        return i18n("Arc to transport");
+        return kli18n("Arc to transport");
     if (o.imp()->inherits(NumericTextImp::stype()))
-        return i18n("Value to transport");
+        return kli18n("Value to transport");
     if (o.imp()->inherits(LineImp::stype()))
-        return i18n("Transport a measure on this line");
+        return kli18n("Transport a measure on this line");
     if (o.imp()->inherits(CircleImp::stype()))
-        return i18n("Transport a measure on this circle");
+        return kli18n("Transport a measure on this circle");
     if (o.imp()->inherits(PointImp::stype())) {
         if (os[1]->imp()->inherits(CircleImp::stype()))
-            return i18n("Start transport from this point of the circle");
+            return kli18n("Start transport from this point of the circle");
         if (os[1]->imp()->inherits(LineImp::stype()))
-            return i18n("Start transport from this point of the line");
+            return kli18n("Start transport from this point of the line");
         else
-            return i18n("Start transport from this point of the curve");
+            return kli18n("Start transport from this point of the curve");
         // well, this isn't impemented yet, should never get here
     }
-    return QLatin1String("");
+    return kli18n("");
 }
 
-QString MeasureTransportConstructor::selectStatement(const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString MeasureTransportConstructor::selectStatement(const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
     switch (os.size()) {
     case 0:
-        return i18n("Select a segment, arc or numeric label to be transported...");
+        return kli18n("Select a segment, arc or numeric label to be transported...");
         break;
 
     case 1:
-        return i18n("Select a destination line or circle...");
+        return kli18n("Select a destination line or circle...");
         break;
 
     case 2:
-        return i18n("Choose a starting point on the line/circle...");
+        return kli18n("Choose a starting point on the line/circle...");
         break;
     }
 
-    return QLatin1String("");
+    return kli18n("");
 }
 
 std::vector<ObjectHolder *> MeasureTransportConstructor::build(const std::vector<ObjectCalcer *> &parents, KigDocument &, KigWidget &) const
@@ -1679,17 +1685,17 @@ bool MeasureTransportConstructor::isTransform() const
  * construction of conic-line and circle-circle constructions
  */
 
-static const struct ArgsParser::spec argsspeccli[] = {{ConicImp::stype(), I18N_NOOP("Intersect with this conic"), "SHOULD NOT BE SEEN", true},
-                                                      {AbstractLineImp::stype(), I18N_NOOP("Intersect with this line"), "SHOULD NOT BE SEEN", true}};
+static const struct ArgsParser::spec argsspeccli[] = {{ConicImp::stype(), kli18n("Intersect with this conic"), kli18n("SHOULD NOT BE SEEN"), true},
+                                                      {AbstractLineImp::stype(), kli18n("Intersect with this line"), kli18n("SHOULD NOT BE SEEN"), true}};
 
-static const struct ArgsParser::spec argsspeccbli[] = {{CubicImp::stype(), I18N_NOOP("Intersect with this cubic"), "SHOULD NOT BE SEEN", true},
-                                                       {AbstractLineImp::stype(), I18N_NOOP("Intersect with this line"), "SHOULD NOT BE SEEN", true}};
+static const struct ArgsParser::spec argsspeccbli[] = {{CubicImp::stype(), kli18n("Intersect with this cubic"), kli18n("SHOULD NOT BE SEEN"), true},
+                                                       {AbstractLineImp::stype(), kli18n("Intersect with this line"), kli18n("SHOULD NOT BE SEEN"), true}};
 
-static const struct ArgsParser::spec argsspeccci[] = {{CircleImp::stype(), I18N_NOOP("Intersect with this circle"), "SHOULD NOT BE SEEN", true},
-                                                      {CircleImp::stype(), I18N_NOOP("Intersect with this circle"), "SHOULD NOT BE SEEN", true}};
+static const struct ArgsParser::spec argsspeccci[] = {{CircleImp::stype(), kli18n("Intersect with this circle"), kli18n("SHOULD NOT BE SEEN"), true},
+                                                      {CircleImp::stype(), kli18n("Intersect with this circle"), kli18n("SHOULD NOT BE SEEN"), true}};
 
 GenericIntersectionConstructor::GenericIntersectionConstructor()
-    : MergeObjectConstructor(I18N_NOOP("Intersect"), I18N_NOOP("The intersection of two objects"), "curvelineintersection")
+    : MergeObjectConstructor(i18n("Intersect"), i18n("The intersection of two objects"), "curvelineintersection")
 {
     // intersection type..
     // There is one "toplevel" object_constructor, that is composed
@@ -1757,66 +1763,66 @@ bool GenericIntersectionConstructor::isIntersection() const
     return true;
 }
 
-QString GenericIntersectionConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString GenericIntersectionConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &os, const KigDocument &, const KigWidget &) const
 {
-    QString preamble;
+    KLazyLocalizedString preamble;
     switch (os.size()) {
     case 1:
         if (o.imp()->inherits(CircleImp::stype()))
-            return i18n("Intersect this Circle");
+            return kli18n("Intersect this Circle");
         else if (o.imp()->inherits(ConicImp::stype()))
-            return i18n("Intersect this Conic");
+            return kli18n("Intersect this Conic");
         else if (o.imp()->inherits(SegmentImp::stype()))
-            return i18n("Intersect this Segment");
+            return kli18n("Intersect this Segment");
         else if (o.imp()->inherits(RayImp::stype()))
-            return i18n("Intersect this Half-line");
+            return kli18n("Intersect this Half-line");
         else if (o.imp()->inherits(LineImp::stype()))
-            return i18n("Intersect this Line");
+            return kli18n("Intersect this Line");
         else if (o.imp()->inherits(CubicImp::stype()))
-            return i18n("Intersect this Cubic Curve");
+            return kli18n("Intersect this Cubic Curve");
         else if (o.imp()->inherits(ArcImp::stype()))
-            return i18n("Intersect this Arc");
+            return kli18n("Intersect this Arc");
         else if (o.imp()->inherits(FilledPolygonImp::stype()))
-            return i18n("Intersect this Polygon");
+            return kli18n("Intersect this Polygon");
         else if (o.imp()->inherits(AbstractPolygonImp::stype()))
-            return i18n("Intersect this Polygonal");
+            return kli18n("Intersect this Polygonal");
         else
             assert(false);
         break;
     case 2:
         if (o.imp()->inherits(CircleImp::stype()))
-            return i18n("with this Circle");
+            return kli18n("with this Circle");
         else if (o.imp()->inherits(ConicImp::stype()))
-            return i18n("with this Conic");
+            return kli18n("with this Conic");
         else if (o.imp()->inherits(SegmentImp::stype()))
-            return i18n("with this Segment");
+            return kli18n("with this Segment");
         else if (o.imp()->inherits(RayImp::stype()))
-            return i18n("with this Half-line");
+            return kli18n("with this Half-line");
         else if (o.imp()->inherits(LineImp::stype()))
-            return i18n("with this Line");
+            return kli18n("with this Line");
         else if (o.imp()->inherits(CubicImp::stype()))
-            return i18n("with this Cubic Curve");
+            return kli18n("with this Cubic Curve");
         else if (o.imp()->inherits(ArcImp::stype()))
-            return i18n("with this Arc");
+            return kli18n("with this Arc");
         else if (o.imp()->inherits(FilledPolygonImp::stype()))
-            return i18n("with this Polygon");
+            return kli18n("with this Polygon");
         else if (o.imp()->inherits(AbstractPolygonImp::stype()))
-            return i18n("with this Polygonal");
+            return kli18n("with this Polygonal");
         else
             assert(false);
         break;
     }
 
-    return QString();
+    return KLazyLocalizedString();
 }
 
 static const ArgsParser::spec argsspecMidPointOfTwoPoints[] = {{PointImp::stype(),
-                                                                I18N_NOOP("Construct midpoint of this point and another one"),
-                                                                I18N_NOOP("Select the first of the points of which you want to construct the midpoint..."),
+                                                                kli18n("Construct midpoint of this point and another one"),
+                                                                kli18n("Select the first of the points of which you want to construct the midpoint..."),
                                                                 false},
                                                                {PointImp::stype(),
-                                                                I18N_NOOP("Construct the midpoint of this point and another one"),
-                                                                I18N_NOOP("Select the other of the points of which to construct the midpoint..."),
+                                                                kli18n("Construct the midpoint of this point and another one"),
+                                                                kli18n("Select the other of the points of which to construct the midpoint..."),
                                                                 false}};
 
 MidPointOfTwoPointsConstructor::MidPointOfTwoPointsConstructor()
@@ -1866,12 +1872,12 @@ bool MidPointOfTwoPointsConstructor::isTransform() const
 
 static const ArgsParser::spec argsspecGoldenPointOfTwoPoints[] = {
     {PointImp::stype(),
-     I18N_NOOP("Construct golden ratio point of this point and another one"),
-     I18N_NOOP("Select the first of the points of which you want to construct the golden ratio point..."),
+     kli18n("Construct golden ratio point of this point and another one"),
+     kli18n("Select the first of the points of which you want to construct the golden ratio point..."),
      false},
     {PointImp::stype(),
-     I18N_NOOP("Construct the golden ratio point of this point and another one"),
-     I18N_NOOP("Select the other of the points of which to construct the golden ratio point..."),
+     kli18n("Construct the golden ratio point of this point and another one"),
+     kli18n("Select the other of the points of which to construct the golden ratio point..."),
      false}};
 
 GoldenPointOfTwoPointsConstructor::GoldenPointOfTwoPointsConstructor()
@@ -1973,16 +1979,16 @@ int TestConstructor::wantArgs(const std::vector<ObjectCalcer *> &os, const KigDo
     return ret;
 }
 
-QString GenericIntersectionConstructor::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString GenericIntersectionConstructor::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &, const KigWidget &) const
 {
     if (sel.size() == 0)
-        return i18n("Select the first object to intersect...");
+        return kli18n("Select the first object to intersect...");
     else
-        return i18n("Select the second object to intersect...");
+        return kli18n("Select the second object to intersect...");
 }
 
 TangentConstructor::TangentConstructor()
-    : MergeObjectConstructor(I18N_NOOP("Tangent"), I18N_NOOP("The line tangent to a curve"), "tangent")
+    : MergeObjectConstructor(i18n("Tangent"), i18n("The line tangent to a curve"), "tangent")
 {
     SimpleObjectTypeConstructor *conic = new SimpleObjectTypeConstructor(TangentConicType::instance(), "SHOULDNOTBESEEN", "SHOULDNOTBESEEN", "tangentconic");
 
@@ -2002,22 +2008,22 @@ TangentConstructor::~TangentConstructor()
 {
 }
 
-QString TangentConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString TangentConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
 {
     if (o.imp()->inherits(CircleImp::stype()))
-        return i18n("Tangent to This Circle");
+        return kli18n("Tangent to This Circle");
     else if (o.imp()->inherits(ConicImp::stype()))
-        return i18n("Tangent to This Conic");
+        return kli18n("Tangent to This Conic");
     else if (o.imp()->inherits(ArcImp::stype()))
-        return i18n("Tangent to This Arc");
+        return kli18n("Tangent to This Arc");
     else if (o.imp()->inherits(CubicImp::stype()))
-        return i18n("Tangent to This Cubic Curve");
+        return kli18n("Tangent to This Cubic Curve");
     else if (o.imp()->inherits(CurveImp::stype()))
-        return i18n("Tangent to This Curve");
+        return kli18n("Tangent to This Curve");
     else if (o.imp()->inherits(PointImp::stype()))
-        return i18n("Tangent at This Point");
+        return kli18n("Tangent at This Point");
     //  else assert( false );
-    return QString();
+    return KLazyLocalizedString();
 }
 
 // QString TangentConstructor::selectStatement(
@@ -2035,7 +2041,7 @@ QString TangentConstructor::useText(const ObjectCalcer &o, const std::vector<Obj
  */
 
 CocConstructor::CocConstructor()
-    : MergeObjectConstructor(I18N_NOOP("Center Of Curvature"), I18N_NOOP("The center of the osculating circle to a curve"), "centerofcurvature")
+    : MergeObjectConstructor(i18n("Center Of Curvature"), i18n("The center of the osculating circle to a curve"), "centerofcurvature")
 {
     SimpleObjectTypeConstructor *conic = new SimpleObjectTypeConstructor(CocConicType::instance(), "SHOULDNOTBESEEN", "SHOULDNOTBESEEN", "cocconic");
 
@@ -2052,17 +2058,17 @@ CocConstructor::~CocConstructor()
 {
 }
 
-QString CocConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
+KLazyLocalizedString CocConstructor::useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &, const KigDocument &, const KigWidget &) const
 {
     if (o.imp()->inherits(ConicImp::stype()))
-        return i18n("Center of Curvature of This Conic");
+        return kli18n("Center of Curvature of This Conic");
     else if (o.imp()->inherits(CubicImp::stype()))
-        return i18n("Center of Curvature of This Cubic Curve");
+        return kli18n("Center of Curvature of This Cubic Curve");
     else if (o.imp()->inherits(CurveImp::stype()))
-        return i18n("Center of Curvature of This Curve");
+        return kli18n("Center of Curvature of This Curve");
     else if (o.imp()->inherits(PointImp::stype()))
-        return i18n("Center of Curvature at This Point");
-    return QString();
+        return kli18n("Center of Curvature at This Point");
+    return KLazyLocalizedString();
 }
 
 bool relativePrimes(int n, int p)
@@ -2078,12 +2084,12 @@ bool relativePrimes(int n, int p)
     return relativePrimes(p, n - d * p);
 }
 
-// QString CocConstructor::selectStatement(
+// KLazyLocalizedString CocConstructor::selectStatement(
 //   const std::vector<ObjectCalcer*>& sel, const KigDocument&,
 //   const KigWidget& ) const
 //{
 //   if ( sel.size() == 0 )
-//     return i18n( "Select the object..." );
+//     return kli18n( "Select the object..." );
 //   else
-//     return i18n( "Select the point where to compute the center of curvature..." );
+//     return kli18n( "Select the point where to compute the center of curvature..." );
 // }

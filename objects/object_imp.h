@@ -85,8 +85,8 @@ class ObjectImpType
     const ObjectImpType *mparent;
     const char *minternalname;
     KLazyLocalizedString mtranslatedname;
-    const char *mselectstatement;
-    const char *mselectnamestatement;
+    KLazyLocalizedString mselectstatement;
+    KLazyLocalizedString mselectnamestatement;
     KLazyLocalizedString mremoveastatement;
     KLazyLocalizedString maddastatement;
     KLazyLocalizedString mmoveastatement;
@@ -131,8 +131,8 @@ public:
     explicit ObjectImpType(const ObjectImpType *parent,
                            const char *internalname,
                            const KLazyLocalizedString &translatedname,
-                           const char *selectstatement,
-                           const char *selectnamestatement,
+                           const KLazyLocalizedString &selectstatement,
+                           const KLazyLocalizedString &selectnamestatement,
                            const KLazyLocalizedString &removeastatement,
                            const KLazyLocalizedString &addastatement,
                            const KLazyLocalizedString &moveastatement,
@@ -161,17 +161,17 @@ public:
     /**
      * Returns a translatable string of the form "Select this %1".
      * E.g. "Select this segment".  Note that users of this function
-     * should use i18n on the returned string before using it.
+     * should use i18n on the returned string before using it. //updated with kli18n, use Qstring
      */
-    const char *selectStatement() const;
+    QString selectStatement() const;
 
     /**
      * Returns a translatable string of the form "Select point %1".  %1
      * will be filled in by whomever calls this function with the name
      * of the object in question.  This function should be used as
-     * follows: i18n( x->selectNameStatement() ).arg( xname ).
+     * follows: i18n( x->selectNameStatement() ).arg( xname ). //updated with kli18n, use Qstring
      */
-    const char *selectNameStatement() const;
+    QString selectNameStatement() const;
 
     /**
      * Returns a translated string of the form "Remove a xxx".

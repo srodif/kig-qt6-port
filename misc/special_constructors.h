@@ -114,8 +114,8 @@ public:
 
     bool isAlreadySelectedOK(const std::vector<ObjectCalcer *> &os, const uint &) const override;
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const override;
 };
@@ -128,8 +128,8 @@ public:
 
     bool isAlreadySelectedOK(const std::vector<ObjectCalcer *> &os, const uint &) const override;
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const override;
 };
@@ -148,8 +148,8 @@ public:
     bool isAlreadySelectedOK(const std::vector<ObjectCalcer *> &os, const uint &) const override;
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
     void handleArgs(const std::vector<ObjectCalcer *> &os, KigPart &d, KigWidget &v) const override;
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
     void handlePrelim(KigPainter &p, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const;
     std::vector<ObjectHolder *> build(const std::vector<ObjectCalcer *> &os, KigDocument &d, KigWidget &w) const;
@@ -167,8 +167,8 @@ public:
 
     bool isAlreadySelectedOK(const std::vector<ObjectCalcer *> &os, const uint &) const override;
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const override;
 };
@@ -189,8 +189,8 @@ public:
     std::vector<ObjectHolder *> build(const std::vector<ObjectCalcer *> &os, KigDocument &d, KigWidget &w) const;
     void handleArgs(const std::vector<ObjectCalcer *> &os, KigPart &d, KigWidget &v) const override;
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 
     void handlePrelim(KigPainter &p, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &d) const;
@@ -213,8 +213,8 @@ public:
     bool isAlreadySelectedOK(const std::vector<ObjectCalcer *> &os, const uint &) const override;
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
     void handleArgs(const std::vector<ObjectCalcer *> &os, KigPart &d, KigWidget &v) const override;
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
     void handlePrelim(KigPainter &p, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
 
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const;
@@ -231,7 +231,7 @@ class ConicRadicalConstructor : public StandardConstructorBase
 public:
     ConicRadicalConstructor();
     ~ConicRadicalConstructor();
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const override;
     std::vector<ObjectHolder *> build(const std::vector<ObjectCalcer *> &os, KigDocument &d, KigWidget &w) const override;
     void plug(KigPart *doc, KigGUIAction *kact) override;
@@ -252,7 +252,7 @@ public:
      * namely, whether the first point is a constrained point...
      */
     int wantArgs(const std::vector<ObjectCalcer *> &os, const KigDocument &d, const KigWidget &v) const override;
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
 
     void drawprelim(const ObjectDrawer &drawer, KigPainter &p, const std::vector<ObjectCalcer *> &parents, const KigDocument &) const override;
     std::vector<ObjectHolder *> build(const std::vector<ObjectCalcer *> &os, KigDocument &d, KigWidget &w) const override;
@@ -292,8 +292,8 @@ public:
 
     bool isIntersection() const override;
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
-    QString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString selectStatement(const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &w) const override;
 };
 
 class MidPointOfTwoPointsConstructor : public StandardConstructorBase
@@ -345,7 +345,7 @@ public:
     TangentConstructor();
     ~TangentConstructor();
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
     //  QString selectStatement(
     //    const std::vector<ObjectCalcer*>& sel, const KigDocument& d,
     //    const KigWidget& w ) const;
@@ -357,7 +357,7 @@ public:
     CocConstructor();
     ~CocConstructor();
 
-    QString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
+    KLazyLocalizedString useText(const ObjectCalcer &o, const std::vector<ObjectCalcer *> &sel, const KigDocument &d, const KigWidget &v) const override;
     //  QString selectStatement(
     //    const std::vector<ObjectCalcer*>& sel, const KigDocument& d,
     //    const KigWidget& w ) const;

@@ -25,9 +25,9 @@
 #include <QFontDialog>
 #include <QStringList>
 
-static const ArgsParser::spec arggspeccs[] = {{IntImp::stype(), "UNUSED", "SHOULD NOT BE SEEN", false},
-                                              {PointImp::stype(), "UNUSED", "SHOULD NOT BE SEEN", false},
-                                              {StringImp::stype(), "UNUSED", "SHOULD NOT BE SEEN", false}};
+static const ArgsParser::spec arggspeccs[] = {{IntImp::stype(), kli18n("UNUSED"), kli18n("SHOULD NOT BE SEEN"), false},
+                                              {PointImp::stype(), kli18n("UNUSED"), kli18n("SHOULD NOT BE SEEN"), false},
+                                              {StringImp::stype(), kli18n("UNUSED"), kli18n("SHOULD NOT BE SEEN"), false}};
 
 // KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE( GenericTextType )
 
@@ -150,12 +150,12 @@ bool GenericTextType::isDefinedOnOrThrough(const ObjectImp *, const Args &) cons
     return false;
 }
 
-QStringList GenericTextType::specialActions() const
+QList<KLazyLocalizedString> GenericTextType::specialActions() const
 {
-    QStringList ret;
-    ret << i18n("&Copy Text");
-    ret << i18n("&Toggle Frame");
-    ret << i18n("Set &Font...");
+    QList<KLazyLocalizedString> ret;
+    ret << kli18n("&Copy Text");
+    ret << kli18n("&Toggle Frame");
+    ret << kli18n("Set &Font...");
     return ret;
 }
 
@@ -213,10 +213,10 @@ const TextType *TextType::instance()
     return &t;
 }
 
-QStringList TextType::specialActions() const
+QList<KLazyLocalizedString> TextType::specialActions() const
 {
-    QStringList ret = GenericTextType::specialActions();
-    ret << i18n("&Redefine...");
+    QList<KLazyLocalizedString> ret = GenericTextType::specialActions();
+    ret << kli18n("&Redefine...");
     return ret;
 }
 
@@ -260,10 +260,10 @@ const NumericTextType *NumericTextType::instance()
     return &t;
 }
 
-QStringList NumericTextType::specialActions() const
+QList<KLazyLocalizedString> NumericTextType::specialActions() const
 {
-    QStringList ret = GenericTextType::specialActions();
-    ret << i18n("Change &Value...");
+    QList<KLazyLocalizedString> ret = GenericTextType::specialActions();
+    ret << kli18n("Change &Value...");
     return ret;
 }
 

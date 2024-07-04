@@ -8,6 +8,7 @@
 
 #include "edittype.h"
 
+#include <QWidget>
 #include "ui_edittypewidget.h"
 
 #include <KHelpClient>
@@ -15,6 +16,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <KLocalizedString>
 
 EditType::EditType(QWidget *parent, const QString &name, const QString &desc, const QString &icon)
     : QDialog(parent)

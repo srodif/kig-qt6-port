@@ -30,7 +30,7 @@ public:
     const Coordinate moveReferencePoint(const ObjectTypeCalcer &ourobj) const override;
     void move(ObjectTypeCalcer &ourobj, const Coordinate &to, const KigDocument &) const override;
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &o, ObjectTypeCalcer &c, KigPart &d, KigWidget &w, NormalMode &m) const override;
 
     const ArgsParser &argParser() const;
@@ -44,7 +44,7 @@ class TextType : public GenericTextType
 public:
     static const TextType *instance();
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &o, ObjectTypeCalcer &c, KigPart &d, KigWidget &w, NormalMode &m) const override;
 };
 
@@ -56,6 +56,6 @@ class NumericTextType : public GenericTextType
 public:
     static const NumericTextType *instance();
 
-    QStringList specialActions() const override;
+    QList<KLazyLocalizedString> specialActions() const override;
     void executeAction(int i, ObjectHolder &o, ObjectTypeCalcer &c, KigPart &d, KigWidget &w, NormalMode &m) const override;
 };

@@ -20,10 +20,13 @@
 #include <functional>
 #include <iterator>
 
+#include <KLazyLocalizedString>
+
 using std::find;
 
-static const struct ArgsParser::spec argsspecLocus[] = {{HierarchyImp::stype(), "hierarchy", "SHOULD NOT BE SEEN", false},
-                                                        {CurveImp::stype(), "curve", "SHOULD NOT BE SEEN", false}};
+static const struct ArgsParser::spec argsspecLocus[] = {{HierarchyImp::stype(), kli18n("hierarchy"), kli18n("SHOULD NOT BE SEEN"), false},
+                                                        {CurveImp::stype(), kli18n("curve"), kli18n("SHOULD NOT BE SEEN"), false}};
+
 
 KIG_INSTANTIATE_OBJECT_TYPE_INSTANCE(LocusType)
 

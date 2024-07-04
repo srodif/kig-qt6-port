@@ -16,6 +16,9 @@
 #include "../objects/transform_types.h"
 
 #include <qdom.h>
+#include <QChar>
+#include <QString>
+#include <KLazyLocalizedString>
 
 class ObjectHierarchy::Node
 {
@@ -386,7 +389,7 @@ void ObjectHierarchy::init(const std::vector<ObjectCalcer *> &from, const std::v
     mnumberofargs = from.size();
     mnumberofresults = to.size();
     margrequirements.resize(from.size(), ObjectImp::stype());
-    musetexts.resize(margrequirements.size(), "");
+    musetexts.resize(margrequirements.size(), QChar());
     std::map<const ObjectCalcer *, int> seenmap;
     for (uint i = 0; i < from.size(); ++i)
         seenmap[from[i]] = i;
@@ -398,7 +401,7 @@ void ObjectHierarchy::init(const std::vector<ObjectCalcer *> &from, const std::v
     for (std::vector<ObjectCalcer *>::const_iterator i = to.begin(); i != to.end(); ++i)
         visit(*i, seenmap, true, true);
 
-    mselectstatements.resize(margrequirements.size(), "");
+    mselectstatements.resize(margrequirements.size(), QChar());
 }
 
 ObjectHierarchy::ObjectHierarchy(const std::vector<ObjectCalcer *> &from, const ObjectCalcer *to)
@@ -424,10 +427,10 @@ void ObjectHierarchy::serialize(QDomElement &parent, QDomDocument &doc) const
         // we only load them from builtin macro's.
         if (msaveinputtags) {
             QDomElement ut = doc.createElement(QStringLiteral("UseText"));
-            ut.appendChild(doc.createTextNode(QString::fromLatin1(musetexts[i].c_str())));
+            ut.appendChild(doc.createTextNode(QString(musetexts[i])));
             e.appendChild(ut);
             QDomElement ss = doc.createElement(QStringLiteral("SelectStatement"));
-            ss.appendChild(doc.createTextNode(QString::fromLatin1(mselectstatements[i].c_str())));
+            ss.appendChild(doc.createTextNode(QString(mselectstatements[i])));
             e.appendChild(ss);
         }
         parent.appendChild(e);
@@ -503,18 +506,18 @@ ObjectHierarchy *ObjectHierarchy::buildSafeObjectHierarchy(const QDomElement &pa
         if (req == nullptr)
             req = ObjectImp::stype(); // sucks, i know..
         obhi->margrequirements.resize(obhi->mnumberofargs, ObjectImp::stype());
-        obhi->musetexts.resize(obhi->mnumberofargs, "");
-        obhi->mselectstatements.resize(obhi->mnumberofargs, "");
+        obhi->musetexts.resize(obhi->mnumberofargs, QChar());
+        obhi->mselectstatements.resize(obhi->mnumberofargs, QChar());
         obhi->margrequirements[id - 1] = req;
-        obhi->musetexts[id - 1] = req->selectStatement();
+
         QDomElement esub = e.firstChild().toElement();
         for (; !esub.isNull(); esub = esub.nextSibling().toElement()) {
             if (esub.tagName() == QLatin1String("UseText")) {
                 obhi->msaveinputtags = true;
-                obhi->musetexts[id - 1] = esub.text().toLatin1().data();
+                obhi->musetexts[id - 1] = esub.text().at(0);
             } else if (esub.tagName() == QLatin1String("SelectStatement")) {
                 obhi->msaveinputtags = true;
-                obhi->mselectstatements[id - 1] = esub.text().toLatin1().data();
+                obhi->mselectstatements[id - 1] = esub.text().at(0);
             } else {
                 // broken file ? ignore...
             }
@@ -595,8 +598,12 @@ ArgsParser ObjectHierarchy::argParser() const
         const ObjectImpType *req = margrequirements[i];
         ArgsParser::spec spec;
         spec.type = req;
-        spec.usetext = musetexts[i];
-        spec.selectstat = mselectstatements[i];
+        char translateUseTextChar[1024]; // check arbitrary
+        char translateSelectStatChar[1024]; // check arbitrary
+        translateUseTextChar[0] = static_cast<char>(musetexts[i].toLatin1());
+        translateSelectStatChar[0] = static_cast<char>(mselectstatements[i].toLatin1());
+        spec.usetext = kli18n(translateUseTextChar);
+        spec.selectstat = kli18n(translateSelectStatChar);
         specs.push_back(spec);
     };
     return ArgsParser(specs);
@@ -725,7 +732,7 @@ int ObjectHierarchy::storeObject(const ObjectCalcer *o,
             std::vector<ObjectCalcer *> opl = o->parents();
 
             margrequirements[pl[i]] = lowermost(margrequirements[pl[i]], o->impRequirement(parent, opl), parent->imp()->type());
-            musetexts[pl[i]] = margrequirements[pl[i]]->selectStatement();
+            musetexts[pl[i]] = margrequirements[pl[i]]->selectStatement().at(0);
         };
     };
     if (dynamic_cast<const ObjectTypeCalcer *>(o))

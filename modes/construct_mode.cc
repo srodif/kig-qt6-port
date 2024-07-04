@@ -155,7 +155,7 @@ void BaseConstructMode::rightClicked(const std::vector<ObjectHolder *> &, const 
 
 void BaseConstructMode::mouseMoved(const std::vector<ObjectHolder *> &os, const QPoint &p, KigWidget &w, bool shiftpressed)
 {
-    mdoc.emitStatusBarText(selectStatement(getCalcers(mparents), w));
+    // mdoc.emitStatusBarText(selectStatement(getCalcers(mparents), w)); //TODO port from QString to KLazyLocalizedString
 
     w.updateCurPix();
     KigPainter pter(w.screenInfo(), &w.curPix, mdoc.document());
@@ -341,8 +341,8 @@ void ConstructMode::handlePrelim(const std::vector<ObjectCalcer *> &args, const 
 
     mctor->handlePrelim(pter, args, mdoc.document(), w);
 
-    QString o = mctor->useText(*args.back(), args, mdoc.document(), w);
-    pter.drawTextStd(textloc, o);
+    KLazyLocalizedString o = mctor->useText(*args.back(), args, mdoc.document(), w);
+    // pter.drawTextStd(textloc, o); //TODO port from QString to KLazyLocalizedString
 }
 
 int ConstructMode::isAlreadySelectedOK(const std::vector<ObjectCalcer *> &os, const int &pos)
@@ -379,10 +379,10 @@ void TestConstructMode::handlePrelim(const std::vector<ObjectCalcer *> &os, cons
     std::transform(os.begin(), os.end(), std::back_inserter(args), std::mem_fn(&ObjectCalcer::imp));
 
     // usetext
-    QString usetext = i18n(mtype->argsParser().usetext(args.back(), args).c_str());
+    KLazyLocalizedString usetext = mtype->argsParser().usetext(args.back(), args);
     QPoint textloc = p;
     textloc.setX(textloc.x() + 15);
-    pter.drawTextStd(textloc, usetext);
+    // pter.drawTextStd(textloc, usetext); //TODO port from QString to KLazyLocalizedString
 
     // test result
     ObjectImp *data = mtype->calc(args, mdoc.document());
@@ -501,21 +501,21 @@ void TestConstructMode::mouseMoved(const std::vector<ObjectHolder *> &os, const 
         BaseConstructMode::mouseMoved(os, p, w, shiftPressed);
 }
 
-QString ConstructMode::selectStatement(const std::vector<ObjectCalcer *> &args, const KigWidget &w)
+KLazyLocalizedString ConstructMode::selectStatement(const std::vector<ObjectCalcer *> &args, const KigWidget &w)
 {
     return mctor->selectStatement(args, mdoc.document(), w);
 }
 
-QString TestConstructMode::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigWidget &)
+KLazyLocalizedString TestConstructMode::selectStatement(const std::vector<ObjectCalcer *> &sel, const KigWidget &)
 {
     using namespace std;
     Args args;
     transform(sel.begin(), sel.end(), back_inserter(args), mem_fn(&ObjectCalcer::imp));
 
-    std::string ret = mtype->argsParser().selectStatement(args);
-    if (ret.empty())
-        return QString();
-    return i18n(ret.c_str());
+    KLazyLocalizedString ret = mtype->argsParser().selectStatement(args);
+    if (ret.isEmpty())
+        return KLazyLocalizedString();
+    return ret;
 }
 
 void PointConstructMode::redrawScreen(KigWidget *w)
