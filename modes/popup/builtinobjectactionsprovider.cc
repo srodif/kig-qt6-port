@@ -25,6 +25,7 @@
 #include <QRect>
 
 #include <KIconEngine>
+#include <KIconLoader>
 
 struct color_struct {
     const Qt::GlobalColor color;
@@ -43,7 +44,6 @@ const int numberofcolors = 7; // is there a better way to calc that?
 
 void BuiltinObjectActionsProvider::fillUpMenu(NormalModePopupObjects &popup, int menu, int &nextfree)
 {
-    KIconLoader *l = popup.part().iconLoader();
     if (menu == NormalModePopupObjects::ToplevelMenu) {
         std::vector<ObjectHolder *> os = popup.objects();
 
@@ -64,15 +64,15 @@ void BuiltinObjectActionsProvider::fillUpMenu(NormalModePopupObjects &popup, int
             popup.addInternalAction(menu, i18n("&Show"), nextfree + 1);
         }
         nextfree += 2;
-        popup.addInternalAction(menu, QIcon(new KIconEngine("transform-move", l)), i18n("&Move"), nextfree++);
-        popup.addInternalAction(menu, QIcon(new KIconEngine("edit-delete", l)), i18n("&Delete"), nextfree++);
+        popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String("transform-move"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), i18n("&Move"), nextfree++);
+        popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String("edit-delete"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr), i18n("&Delete"), nextfree++);
     } else if (menu == NormalModePopupObjects::SetColorMenu) {
         QPixmap p(20, 20);
         for (int i = 0; i < numberofcolors; i++) {
             p.fill(QColor(colors[i].color));
             popup.addInternalAction(menu, QIcon(p), i18n(colors[i].name), nextfree++);
         }
-        popup.addInternalAction(menu, QIcon(new KIconEngine("color", l)), i18n("&Custom Color"), nextfree++);
+        popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String("color"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), i18n("&Custom Color"), nextfree++);
     } else if (menu == NormalModePopupObjects::SetSizeMenu && !popup.onlyLabels()) {
         bool point = true;
         bool samecolor = true;

@@ -44,7 +44,7 @@ void PropertiesActionsProvider::fillUpMenu(NormalModePopupObjects &popup, int me
             add &= prop->canFillInNextEscape();
         if (add) {
             if (iconfile && *iconfile) {
-                popup.addInternalAction(menu, QIcon(new KIconEngine(iconfile, popup.part().iconLoader())), o->imp()->properties()[i].toString(), nextfree++);
+                popup.addInternalAction(menu, QIcon(KIconLoader::global()->loadIcon(QLatin1String(iconfile), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)), o->imp()->properties()[i].toString(), nextfree++);
             } else {
                 popup.addInternalAction(menu, o->imp()->properties()[i].toString(), nextfree++);
             };

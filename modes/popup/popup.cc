@@ -141,7 +141,7 @@ NormalModePopupObjects::NormalModePopupObjects(KigPart &part, KigWidget &view, N
         if (!menunames[i].isEmpty())
             mmenus[i]->setTitle(menunames[i]);
         if (!menuicons[i].isEmpty()) {
-            mmenus[i]->setIcon(QIcon(new KIconEngine(menuicons[i], l)));
+            mmenus[i]->setIcon(QIcon(KIconLoader::global()->loadIcon(menuicons[i], KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), nullptr)));
         }
     }
     mmenus[ToplevelMenu] = mmenuslast[ToplevelMenu] = this;
