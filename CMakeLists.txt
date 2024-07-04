@@ -369,14 +369,13 @@ target_link_libraries(kigpart
   Qt::Gui
   Qt::Svg
   Qt::PrintSupport
-  Qt6::Core5Compat
-  KF6::Crash
-  KF6::Parts
-  KF6::I18n
-  KF6::TextEditor
-  KF6::IconThemes
-  KF6::ConfigWidgets
-  KF6::Archive
+  KF5::Crash
+  KF5::Parts
+  KF5::I18n
+  KF5::TextEditor
+  KF5::IconThemes
+  KF5::ConfigWidgets
+  KF5::Archive
 )
 
 if(BoostPython_FOUND)
