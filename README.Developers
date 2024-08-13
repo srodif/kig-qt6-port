@@ -15,30 +15,3 @@ From Kig developers:
   you want to help: translation, coding, art, just send a mail at
   kde-edu-devel@kde.org (preferably before you start, so you won't be
   doing unnecessary work or something like that)
-
-HISTORY (from developers)
-
-I started Kig because we were using "Cabri" in school, a proprietary
-windows-only app.  When I started looking for free alternatives that ran on
-linux, i found two: KGeo and KSeg. Both had features and limitations, KSeg
-had most features, but was ugly.  Furthermore, it was qt-only, which did
-allow it to run on windows too, but made it not fit into kde.  KGeo was
-fully KDE, but didn't have all the features that KSeg had.
-
-I first wanted to merge both together, but the code was rather incompatible,
-so I wanted to simply extend KGeo.  Since I was planning to make it a kpart
-app, i started with "kapptemplate --kpart-app", and then started coding.  I
-was first planning to use lots of code from both kgeo and kseg, but i ended
-up recoding everything since in many cases it was faster than porting stuff,
-and i wanted to change rather much in the code.
-
-I did get much inspiration from the source of both programs, and i used some
-source and many pictures from KGeo, I would therefore want to thank both
-developers for their work.
-
-I also want to thank everyone who contributed something to Kig or to
-free software in general.
-
-Cheers,
-
-The Kig Developers
